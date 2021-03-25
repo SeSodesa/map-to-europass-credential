@@ -11,8 +11,8 @@ The fields in the JSON provided by SISU also do not match the ones in Europass X
 so in addition to a format transformation, a field transformation is performed as well.
 */
 
-/// A type alias for a JSON number type.
-type Number = f32;
+use serde::{Serialize, Deserialize};
+use serde_json;
 
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
@@ -28,7 +28,7 @@ struct SISUAttainment {
     /// Credit transfer information for an attainment that has been transferred.
     credit_transfer_info: CreditTransferInfo,
     /// The number of credits in this attainment.
-    credits: Number,
+    credits: serde_json::value::Number,
     /// A read only string of the document state.
     document_state: DocumentState,
     /// The date when this attainment will expire.
@@ -90,7 +90,7 @@ struct SISUAttainment {
     /// How many study weeks the credits of the attainment represents.
     /// This must be defined only for old attainments that used study weeks,
     /// in order to keep the original study week stored.
-    study_weeks: Number,
+    study_weeks: serde_json::value::Number,
     /// A type of attainment.
     /// One of AssessmentItemAttainment, CourseUnitAttainment, ModuleAttainment.
     attainment_type: AttainmentType,
@@ -149,9 +149,9 @@ struct GradeAverage {
     /// The used calculation method.
     method: AverageCalculationMethod,
     /// The number of credits used in the calculation.
-    total_included_credits: Number,
+    total_included_credits: serde_json::value::Number,
     /// Calculated average numerical grade.
-    value: Number
+    value: serde_json::value::Number
 }
 
 /// An enum describing how a grade average was calculated.
@@ -173,7 +173,7 @@ struct OrganisationRoleShareBase {
     role_urn: String,
     /// The share, greater than zero and at most one.
     /// The shares of one role must sum to one.
-    share: Number,
+    share: serde_json::value::Number,
 }
 
 /// A state an attainment could be in.
