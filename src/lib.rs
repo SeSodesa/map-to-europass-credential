@@ -11,9 +11,10 @@ The fields in the JSON provided by SISU also do not match the ones in Europass X
 so in addition to a format transformation, a field transformation is performed as well.
 */
 
-// This is to allow non-snake case names, which are required to allow serde to deserialize
+// These is to allow non-snake and camel case names, which are required to allow serde to deserialize
 // (as in parse) SISU attainments automatically into the below SISUAttainment instances.
 #![allow(non_snake_case)]
+#![allow(non_camel_case_types)]
 
 use serde::{Serialize, Deserialize};
 use serde_json;
