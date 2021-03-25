@@ -17,6 +17,7 @@ so in addition to a format transformation, a field transformation is performed a
 
 use serde::{Serialize, Deserialize};
 use serde_json;
+use std::str::FromStr;
 
 #[derive(Serialize, Deserialize)]
 /// An attainment returned from the SISU database upon sending
@@ -118,6 +119,45 @@ struct PersonWithAttainmentAcceptorType {
     title: LocalizedString,
 }
 
+/// A Role that an attainment creditor might possess.
+#[derive(Serialize, Deserialize)]
+enum RoleURN {
+    ApprovedBy,
+    CoordinatingSupervisor,
+    CoordinatingProfessor,
+    SupervisingProfessor,
+    MoreSupervisingProfessor,
+    Examinator,
+    Supervisor,
+    ThesisAdvisor,
+    Examiner,
+    PreliminaryExaminer,
+    Opponent,
+    Custos,
+}
+
+impl FromStr for RoleURN {
+    type Err = ();
+
+    fn from_str(string: &str) -> Result<Self, Self::Err> {
+        match string {
+            "urn:code:attainment-acceptor-type:approved-by" => Ok(Self::ApprovedBy),
+            "urn:code:attainment-acceptor-type:coordinating-supervisor" => Ok(Self::CoordinatingSupervisor),
+            "urn:code:attainment-acceptor-type:coordinating-professor" => Ok(Self::CoordinatingProfessor),
+            "urn:code:attainment-acceptor-type:supervising-professor" => Ok(Self::SupervisingProfessor),
+            "urn:code:attainment-acceptor-type:more-supervising-professor" => Ok(Self::MoreSupervisingProfessor),
+            "urn:code:attainment-acceptor-type:examinator" => Ok(Self::Examinator),
+            "urn:code:attainment-acceptor-type:supervisor" => Ok(Self::Supervisor),
+            "urn:code:attainment-acceptor-type:thesis-advisor" => Ok(Self::ThesisAdvisor),
+            "urn:code:attainment-acceptor-type:examiner" => Ok(Self::Examiner),
+            "urn:code:attainment-acceptor-type:preliminary-examiner" => Ok(Self::PreliminaryExaminer),
+            "urn:code:attainment-acceptor-type:opponent" => Ok(Self::Opponent),
+            "urn:code:attainment-acceptor-type:custos" => Ok(Self::Custos),
+            _   => Err(())
+        }
+    }
+}
+
 // A map <langCode, value> of plain strings containing localized versions of a text
 #[derive(Serialize, Deserialize)]
 struct LocalizedString {
@@ -145,9 +185,9 @@ struct CreditTransferInfo {
 /// The state a document is in.
 #[derive(Serialize, Deserialize)]
 enum DocumentState {
-    Draft,
-    Active,
-    Deleted,
+    DRAFT,
+    ACTIVE,
+    DELETED
 }
 
 /// A type that contains information about an average grade calculation.
@@ -191,10 +231,10 @@ struct OrganisationRoleShareBase {
 /// A state an attainment could be in.
 #[derive(Serialize, Deserialize)]
 enum AttainmentState {
-    Attained,
-    Included,
-    Substituted,
-    Failed
+    ATTAINED,
+    INCLUDED,
+    SUBSTITUTED,
+    FAILED
 }
 
 /// A type of attainment.
