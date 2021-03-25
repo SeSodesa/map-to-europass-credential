@@ -249,6 +249,81 @@ enum AttainmentType {
 #[cfg(test)]
 mod tests {
     #[test]
+    fn parse_example_from_sisu_swagger_ui () {
+        let example_str = r#"
+            [
+              {
+                "acceptorPersons": [
+                  {
+                    "personId": "string",
+                    "roleUrn": "urn:code:attainment-acceptor-type:approved-by",
+                    "text": {
+                      "en": "English version",
+                      "fi": "Finnish version",
+                      "sv": "Swedish version"
+                    },
+                    "title": {
+                      "en": "English version",
+                      "fi": "Finnish version",
+                      "sv": "Swedish version"
+                    }
+                  }
+                ],
+                "additionalInfo": {
+                  "en": "English version",
+                  "fi": "Finnish version",
+                  "sv": "Swedish version"
+                },
+                "attainmentDate": "string",
+                "attainmentLanguageUrn": "string",
+                "creditTransferInfo": {
+                  "creditTransferDate": "string",
+                  "educationalInstitutionUrn": "string",
+                  "internationalInstitutionUrn": "string",
+                  "organisation": "string"
+                },
+                "credits": 0,
+                "documentState": "DRAFT",
+                "expiryDate": "string",
+                "gradeAverage": {
+                  "gradeScaleId": "string",
+                  "method": "COURSE_UNIT_ARITHMETIC_MEAN_WEIGHTING_BY_CREDITS",
+                  "totalIncludedCredits": 0,
+                  "value": 0
+                },
+                "gradeId": 0,
+                "gradeScaleId": "string",
+                "id": "string",
+                "misregistration": true,
+                "misregistrationRationale": "string",
+                "moduleContentApplicationId": "string",
+                "organisations": [
+                  {
+                    "educationalInstitutionUrn": "string",
+                    "organisationId": "string",
+                    "roleUrn": "string",
+                    "share": 0
+                  }
+                ],
+                "personFirstNames": "string",
+                "personId": "string",
+                "personLastName": "string",
+                "personStudentNumber": "string",
+                "primary": true,
+                "registrationDate": "string",
+                "state": "ATTAINED",
+                "studentApplicationId": "string",
+                "studyFieldUrn": "string",
+                "studyRightId": "string",
+                "studyWeeks": 0,
+                "type": "string",
+                "verifierPersonId": "string"
+              }
+            ]"#;
+        todo!()
+    }
+
+    #[test]
     fn it_works() {
         assert_eq!(2 + 2, 4);
     }
