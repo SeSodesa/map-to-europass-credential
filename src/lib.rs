@@ -207,8 +207,8 @@ struct GradeAverage {
 /// An enum describing how a grade average was calculated.
 #[derive(Serialize, Deserialize)]
 enum AverageCalculationMethod {
-    CourseUnitArithmeticMeanWeightingByCredits,
-    ArithmeticMeanWeightingByCredits
+    COURSE_UNIT_ARITHMETIC_MEAN_WEIGHTING_BY_CREDITS,
+    ARITHMETIC_MEAN_WEIGHTING_BY_CREDITS
 }
 
 /// Organisations responsible for an attainment in various ways and fractions.
