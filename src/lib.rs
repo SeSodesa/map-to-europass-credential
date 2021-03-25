@@ -18,6 +18,7 @@ so in addition to a format transformation, a field transformation is performed a
 use serde::{Serialize, Deserialize};
 use serde_json;
 
+#[derive(Serialize, Deserialize)]
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
 struct SISUAttainment {
@@ -103,6 +104,7 @@ struct SISUAttainment {
 }
 
 /// Describes a given person or textual personified role that has a given responsibility.
+#[derive(Serialize, Deserialize)]
 struct PersonWithAttainmentAcceptorType {
     /// The ID of the person, if available.
     /// Must be an OTM-compliant number.
@@ -117,6 +119,7 @@ struct PersonWithAttainmentAcceptorType {
 }
 
 // A map <langCode, value> of plain strings containing localized versions of a text
+#[derive(Serialize, Deserialize)]
 struct LocalizedString {
     en: String,
     fi: String,
@@ -124,6 +127,7 @@ struct LocalizedString {
 }
 
 /// Credit transfer information for an attainment that has been transferred.
+#[derive(Serialize, Deserialize)]
 struct CreditTransferInfo {
     /// The date of the credit transfer
     transferDate: String,
@@ -139,6 +143,7 @@ struct CreditTransferInfo {
 }
 
 /// The state a document is in.
+#[derive(Serialize, Deserialize)]
 enum DocumentState {
     Draft,
     Active,
@@ -146,6 +151,7 @@ enum DocumentState {
 }
 
 /// A type that contains information about an average grade calculation.
+#[derive(Serialize, Deserialize)]
 struct GradeAverage {
     /// The grade scale that was used.
     /// Must be a valid OTM number.
@@ -159,12 +165,14 @@ struct GradeAverage {
 }
 
 /// An enum describing how a grade average was calculated.
+#[derive(Serialize, Deserialize)]
 enum AverageCalculationMethod {
     CourseUnitArithmeticMeanWeightingByCredits,
     ArithmeticMeanWeightingByCredits
 }
 
 /// Organisations responsible for an attainment in various ways and fractions.
+#[derive(Serialize, Deserialize)]
 struct OrganisationRoleShareBase {
     /// Identifier for an educational institution.
     /// Must conform to a URN pattern.
@@ -181,6 +189,7 @@ struct OrganisationRoleShareBase {
 }
 
 /// A state an attainment could be in.
+#[derive(Serialize, Deserialize)]
 enum AttainmentState {
     Attained,
     Included,
@@ -189,6 +198,7 @@ enum AttainmentState {
 }
 
 /// A type of attainment.
+#[derive(Serialize, Deserialize)]
 enum AttainmentType {
     AssessmentItemAttainment,
     CourseUnitAttainment,
