@@ -13,7 +13,6 @@ so in addition to a format transformation, a field transformation is performed a
 
 use serde::{Serialize, Deserialize};
 use serde_json;
-use std::str::FromStr;
 
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
@@ -178,28 +177,6 @@ impl<'de> serde::Deserialize<'de> for RoleURN {
             }
         }
         deserializer.deserialize_any(RoleURNVisitor)
-    }
-}
-
-impl FromStr for RoleURN {
-    type Err = ();
-
-    fn from_str(string: &str) -> Result<Self, Self::Err> {
-        match string {
-            "urn:code:attainment-acceptor-type:approved-by" => Ok(Self::ApprovedBy),
-            "urn:code:attainment-acceptor-type:coordinating-supervisor" => Ok(Self::CoordinatingSupervisor),
-            "urn:code:attainment-acceptor-type:coordinating-professor" => Ok(Self::CoordinatingProfessor),
-            "urn:code:attainment-acceptor-type:supervising-professor" => Ok(Self::SupervisingProfessor),
-            "urn:code:attainment-acceptor-type:more-supervising-professor" => Ok(Self::MoreSupervisingProfessor),
-            "urn:code:attainment-acceptor-type:examinator" => Ok(Self::Examinator),
-            "urn:code:attainment-acceptor-type:supervisor" => Ok(Self::Supervisor),
-            "urn:code:attainment-acceptor-type:thesis-advisor" => Ok(Self::ThesisAdvisor),
-            "urn:code:attainment-acceptor-type:examiner" => Ok(Self::Examiner),
-            "urn:code:attainment-acceptor-type:preliminary-examiner" => Ok(Self::PreliminaryExaminer),
-            "urn:code:attainment-acceptor-type:opponent" => Ok(Self::Opponent),
-            "urn:code:attainment-acceptor-type:custos" => Ok(Self::Custos),
-            _   => Err(())
-        }
     }
 }
 
