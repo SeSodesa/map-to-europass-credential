@@ -313,6 +313,7 @@ mod tests {
         use crate::RoleURN;
         use crate::AttainmentType;
         use crate::LocalizedString;
+        use crate::CreditTransferInfo;
         // Parse example JSON response
         let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
         let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
@@ -396,9 +397,24 @@ mod tests {
         assert_eq!(additional_info.fi, "Finnish version");
         assert_eq!(additional_info.sv, "Swedish version");
         // Test attainment_date
+        assert_eq!(attainment_date, "string");
         // Test attainment_language_urn
+        assert_eq!(attainment_language_urn, "string");
         // Test credit_transfer_info
+        let CreditTransferInfo {
+            credit_transfer_date,
+            educational_institution_urn,
+            international_institution_urn,
+            organisation,
+        } = &credit_transfer_info;
+        assert_eq!(credit_transfer_date, "string");
+        assert_eq!(educational_institution_urn, "string");
+        assert_eq!(international_institution_urn, "string");
+        assert_eq!(organisation, "string");
         // Test credits
+        if let Some(credits) = credits.as_u64() {
+            assert_eq!(credits, 0);
+        }
         // Test document_state
         // Test expiry_date
         // Test grade_average
