@@ -306,7 +306,6 @@ mod tests {
         use crate::SISUAttainment;
         use crate::PersonWithAttainmentAcceptorType;
         use crate::RoleURN;
-        use crate::AttainmentType;
         use crate::LocalizedString;
         use crate::CreditTransferInfo;
         use crate::DocumentState;
@@ -514,10 +513,7 @@ mod tests {
             _ => panic!("Wrong attainment type!")
         }
         // Test verifier_person_id
-        match attainment.attainment_type {
-            AttainmentType::AssessmentItemAttainment => {},
-            _ => panic!("Attainment type did not match!")
-        }
+        assert_eq!(verifier_person_id, "string");
     }
     /// The example JSON response found in the SISU Swagger UI:
     /// https://sis-tuni.funidata.fi/ori/swagger-ui.html#/attainment-controller/getAttainmentsUsingGET
