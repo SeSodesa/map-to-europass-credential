@@ -100,6 +100,7 @@ struct SISUAttainment {
     studyWeeks: serde_json::value::Number,
     /// A type of attainment.
     /// One of AssessmentItemAttainment, CourseUnitAttainment, ModuleAttainment.
+    #[serde(rename="type")]
     attainmentType: AttainmentType,
     /// A public person identifier for the person who has done the verification action than converts assessment to attainment.
     verifierPersonId: String,
@@ -171,7 +172,7 @@ struct LocalizedString {
 #[derive(Serialize, Deserialize)]
 struct CreditTransferInfo {
     /// The date of the credit transfer
-    transferDate: String,
+    creditTransferDate: String,
     /// Educational institution where this credit was originally attained.
     /// Must be URN code compliant.
     educationalInstitutionUrn: String,
@@ -250,8 +251,7 @@ enum AttainmentType {
 mod tests {
     #[test]
     fn parse_example_from_sisu_swagger_ui () {
-        let example_str = r#"
-            [
+        let example_str = r#"[
               {
                 "acceptorPersons": [
                   {
@@ -316,10 +316,15 @@ mod tests {
                 "studyFieldUrn": "string",
                 "studyRightId": "string",
                 "studyWeeks": 0,
-                "type": "string",
+                "type": "AssessmentItemAttainment",
                 "verifierPersonId": "string"
               }
             ]"#;
+        use crate::SISUAttainment;
+        let att: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
+            Ok(att) => att,
+            Err(e) => panic!("{}", e)
+        };
         todo!()
     }
 
