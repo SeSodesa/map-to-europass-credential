@@ -109,13 +109,14 @@ struct SISUAttainment {
 
 /// Describes a given person or textual personified role that has a given responsibility.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="camelCase")]
 struct PersonWithAttainmentAcceptorType {
     /// The ID of the person, if available.
     /// Must be an OTM-compliant number.
-    personId: String,
+    person_id: String,
     /// The role of this person.
     /// Must comply to the URN pattern.
-    roleUrn: String,
+    role_urn: String,
     /// Additional information related to this person.
     text: LocalizedString,
     /// The title of this person.
@@ -171,15 +172,16 @@ struct LocalizedString {
 
 /// Credit transfer information for an attainment that has been transferred.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="camelCase")]
 struct CreditTransferInfo {
     /// The date of the credit transfer
-    creditTransferDate: String,
+    credit_transfer_date: String,
     /// Educational institution where this credit was originally attained.
     /// Must be URN code compliant.
-    educationalInstitutionUrn: String,
+    educational_institution_urn: String,
     /// Specific international institution if educational institution refers to other/foreign institution.
     /// Must be a valid URN code.
-    internationalInstitutionUrn: String,
+    international_institution_urn: String,
     /// Description of the university or organisation if no suitable internationalInstitutionUrn
     /// can be given. Must be between 0--8000 characters long.
     organisation: String,
@@ -195,14 +197,15 @@ enum DocumentState {
 
 /// A type that contains information about an average grade calculation.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="camelCase")]
 struct GradeAverage {
     /// The grade scale that was used.
     /// Must be a valid OTM number.
-    gradeScaleId: String,
+    grade_scale_id: String,
     /// The used calculation method.
     method: AverageCalculationMethod,
     /// The number of credits used in the calculation.
-    totalIncludedCredits: serde_json::value::Number,
+    total_included_credits: serde_json::value::Number,
     /// Calculated average numerical grade.
     value: serde_json::value::Number
 }
@@ -216,16 +219,17 @@ enum AverageCalculationMethod {
 
 /// Organisations responsible for an attainment in various ways and fractions.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="camelCase")]
 struct OrganisationRoleShareBase {
     /// Identifier for an educational institution.
     /// Must conform to a URN pattern.
-    educationalInstitutionUrn: String,
+    educational_institution_urn: String,
     /// The id of this organisation.
     /// Must conform to an OTM number pattern.
-    organisationId: String,
+    organisation_id: String,
     /// The role URN.
     /// Must conform to the URN pattern.
-    roleUrn: String,
+    role_urn: String,
     /// The share, greater than zero and at most one.
     /// The shares of one role must sum to one.
     share: serde_json::value::Number,
