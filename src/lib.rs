@@ -258,9 +258,34 @@ enum AttainmentType {
 
 #[cfg(test)]
 mod tests {
+    /// Deconstrcuts an example response and tests that its fields match the expected contents
     #[test]
     fn parse_example_from_sisu_swagger_ui () {
-        let example_str = r#"[
+        // Imports from the main module
+        use crate::SISUAttainment;
+        use crate::AttainmentType;
+        // Parse example JSON response
+        let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
+        let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
+            Ok(att) => att,
+            Err(e)  => panic!("{}", e)
+        };
+        let attainment = match att_vec.get(0) {
+            Some(att) => att,
+            None => panic!("No attainment in JSON array!")
+        };
+        // --- test attainment.acceptor_persons
+
+        match attainment.attainment_type {
+            AttainmentType::AssessmentItemAttainment => {},
+            _ => panic!("Attainment type did not match!")
+        }
+        todo!("test not finished")
+    }
+    /// The example JSON response found in the SISU swagger UI:
+    /// https://sis-tuni.funidata.fi/ori/swagger-ui.html#/attainment-controller/getAttainmentsUsingGET
+    const SISU_SWAGGER_UI_EXAMPLE_RESPONSE: &'static str =
+        r#"[
               {
                 "acceptorPersons": [
                   {
@@ -328,21 +353,5 @@ mod tests {
                 "type": "AssessmentItemAttainment",
                 "verifierPersonId": "string"
               }
-            ]"#;
-        use crate::SISUAttainment;
-        let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
-            Ok(att) => att,
-            Err(e)  => panic!("{}", e)
-        };
-        let attainment = match att_vec.get(0) {
-            Some(att) => att,
-            None => panic!("No attainment in JSON array!")
-        };
-        todo!()
-    }
-
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
+        ]"#;
 }
