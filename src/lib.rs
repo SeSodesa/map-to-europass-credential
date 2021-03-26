@@ -16,13 +16,13 @@ so in addition to a format transformation, a field transformation is performed a
 #![allow(non_snake_case)]
 //#![allow(non_camel_case_types)]
 
-use serde::{Serialize, Deserialize};
+use serde::{Serialize, Deserialize, Deserializer};
 use serde_json;
 use std::str::FromStr;
 
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="camelCase")]
 struct SISUAttainment {
     /// Employees who are responsible for giving the attainment
@@ -108,7 +108,7 @@ struct SISUAttainment {
 }
 
 /// Describes a given person or textual personified role that has a given responsibility.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="camelCase")]
 struct PersonWithAttainmentAcceptorType {
     /// The ID of the person, if available.
@@ -124,7 +124,6 @@ struct PersonWithAttainmentAcceptorType {
 }
 
 /// A Role that an attainment creditor might possess.
-#[derive(Serialize, Deserialize)]
 enum RoleURN {
     ApprovedBy,
     CoordinatingSupervisor,
@@ -138,6 +137,53 @@ enum RoleURN {
     PreliminaryExaminer,
     Opponent,
     Custos,
+}
+
+impl<'de> serde::Deserialize<'de> for RoleURN {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        /// A Visitor type required by custom serde parsers (deserializers)
+        struct RoleURNVisitor;
+        impl<'de> serde::de::Visitor<'de> for RoleURNVisitor {
+            type Value = RoleURN;
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                write!(formatter, "an integer or string representing a Foo")
+            }
+
+            fn visit_str<E: serde::de::Error>(self, s: &str) -> Result<RoleURN, E> {
+                match s {
+                    "urn:code:attainment-acceptor-type:approved-by"
+                        => Ok(RoleURN::ApprovedBy),
+                    "urn:code:attainment-acceptor-type:coordinating-supervisor"
+                        => Ok(RoleURN::CoordinatingSupervisor),
+                    "urn:code:attainment-acceptor-type:coordinating-professor"
+                        => Ok(RoleURN::CoordinatingProfessor),
+                    "urn:code:attainment-acceptor-type:supervising-professor"
+                        => Ok(RoleURN::SupervisingProfessor),
+                    "urn:code:attainment-acceptor-type:more-supervising-professor"
+                        => Ok(RoleURN::MoreSupervisingProfessor),
+                    "urn:code:attainment-acceptor-type:examinator"
+                        => Ok(RoleURN::Examinator),
+                    "urn:code:attainment-acceptor-type:supervisor"
+                        => Ok(RoleURN::Supervisor),
+                    "urn:code:attainment-acceptor-type:thesis-advisor"
+                        => Ok(RoleURN::ThesisAdvisor),
+                    "urn:code:attainment-acceptor-type:examiner"
+                        => Ok(RoleURN::Examiner),
+                    "urn:code:attainment-acceptor-type:preliminary-examiner"
+                        => Ok(RoleURN::PreliminaryExaminer),
+                    "urn:code:attainment-acceptor-type:opponent"
+                        => Ok(RoleURN::Opponent),
+                    "urn:code:attainment-acceptor-type:custos"
+                        => Ok(RoleURN::Custos),
+                    _ => Err(E::invalid_value(serde::de::Unexpected::Str(s), &self)),
+                }
+            }
+        }
+        deserializer.deserialize_any(RoleURNVisitor)
+    }
 }
 
 impl FromStr for RoleURN {
