@@ -116,7 +116,7 @@ struct PersonWithAttainmentAcceptorType {
     person_id: String,
     /// The role of this person.
     /// Must comply to the URN pattern.
-    role_urn: String,
+    role_urn: RoleURN,
     /// Additional information related to this person.
     text: LocalizedString,
     /// The title of this person.
@@ -263,6 +263,8 @@ mod tests {
     fn parse_example_from_sisu_swagger_ui () {
         // Imports from the main module
         use crate::SISUAttainment;
+        use crate::PersonWithAttainmentAcceptorType;
+        use crate::RoleURN;
         use crate::AttainmentType;
         // Parse example JSON response
         let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
@@ -308,6 +310,23 @@ mod tests {
             verifier_person_id,
         } = attainment;
         // Test acceptor_persons
+        let only_acceptor = match acceptor_persons.get(0) {
+            Some(acceptor) => acceptor,
+            None => panic!("No acceptor found!")
+        };
+        // Deconstruct only acceptor
+        let PersonWithAttainmentAcceptorType {
+            person_id,
+            role_urn,
+            text,
+            title,
+        } = only_acceptor;
+        // Test for equality
+        assert_eq!(person_id.as_str(), "string");
+        match role_urn {
+            RoleURN::ApprovedBy => {}
+            _ => panic!("Wrong acceptor URN type!")
+        }
         // Test additional_info
         // Test attainment_date
         // Test attainment_language_urn
