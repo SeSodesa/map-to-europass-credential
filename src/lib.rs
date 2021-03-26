@@ -274,8 +274,39 @@ mod tests {
             Some(att) => att,
             None => panic!("No attainment in JSON array!")
         };
-        // --- test attainment.acceptor_persons
-
+        // Test attainment.acceptor_persons.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let SISUAttainment {
+            acceptor_persons,
+            additional_info,
+            attainment_date,
+            attainment_language_urn,
+            credit_transfer_info,
+            credits,
+            document_state,
+            expiry_date,
+            grade_average,
+            grade_id,
+            grade_scale_id,
+            id,
+            misregistration,
+            misregistration_rationale,
+            module_content_application_id,
+            organisations,
+            person_first_names,
+            person_id,
+            person_last_name,
+            person_student_number,
+            primary,
+            registration_date,
+            state,
+            student_application_id,
+            study_field_urn,
+            study_right_id,
+            study_weeks,
+            attainment_type,
+            verifier_person_id,
+        } = attainment;
         match attainment.attainment_type {
             AttainmentType::AssessmentItemAttainment => {},
             _ => panic!("Attainment type did not match!")
