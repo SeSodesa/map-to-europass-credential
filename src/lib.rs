@@ -355,7 +355,7 @@ mod tests {
             study_weeks,
             attainment_type,
             verifier_person_id,
-        } = attainment;
+        } = &attainment;
         // Test acceptor_persons
         let only_acceptor = match acceptor_persons.get(0) {
             Some(acceptor) => acceptor,
@@ -392,6 +392,9 @@ mod tests {
         assert_eq!(fi, "Finnish version");
         assert_eq!(sv, "Swedish version");
         // Test additional_info
+        assert_eq!(additional_info.en, "English version");
+        assert_eq!(additional_info.fi, "Finnish version");
+        assert_eq!(additional_info.sv, "Swedish version");
         // Test attainment_date
         // Test attainment_language_urn
         // Test credit_transfer_info
