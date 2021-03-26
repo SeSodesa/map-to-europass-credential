@@ -312,15 +312,7 @@ mod tests {
         use crate::GradeAverage;
         use crate::OrganisationRoleShareBase;
         // Parse example JSON response
-        let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
-        let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
-            Ok(att) => att,
-            Err(e)  => panic!("{}", e)
-        };
-        let attainment = match att_vec.get(0) {
-            Some(att) => att,
-            None => panic!("No attainment in JSON array!")
-        };
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
         // Test parsed SISU attainment.
         // Start by deconstructing the struct with Rust's pattern matching.
         let SISUAttainment {
@@ -514,6 +506,77 @@ mod tests {
         }
         // Test verifier_person_id
         assert_eq!(verifier_person_id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_acceptor_persons () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_additional_info () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_attainment_date () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_attainment_language_urn () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_credit_transfer_info () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_credits () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_document_state () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_expiry_date () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_grade_average () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_grade_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_grade_scale_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_misregistration () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_misregistration_rationale () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_module_content_application_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_organisations () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_person_first_names () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_person_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_person_last_name () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_person_student_number () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_primary () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_registration_date () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_state () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_student_application_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_study_field_urn () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_study_right_id () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_study_weeks () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_attainment_type () { todo!() }
+    #[test]
+    fn sisu_swagger_ui_example_verifier_person_id () { todo!() }
+
+    /// Automates the steps of retrieving the attainment object from SISU_SWAGGER_UI_EXAMPLE_RESPONSE
+    fn parse_example_attainment (example_str: &str) -> crate::SISUAttainment {
+        let mut att_vec: Vec<crate::SISUAttainment> = match serde_json::from_str(example_str) {
+            Ok(att) => att,
+            Err(e)  => panic!("{}", e)
+        };
+        let attainment = match att_vec.pop() {
+            Some(attainment) => attainment,
+            None => panic!("No attainment in JSON array!")
+        };
+        attainment
     }
     /// The example JSON response found in the SISU Swagger UI:
     /// https://sis-tuni.funidata.fi/ori/swagger-ui.html#/attainment-controller/getAttainmentsUsingGET
