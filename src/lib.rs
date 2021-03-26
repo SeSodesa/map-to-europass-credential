@@ -45,7 +45,7 @@ struct SISUAttainment {
     /// A result of grade average calculation.
     grade_average: GradeAverage,
     /// The index of the grade, within the grade scale, that represents the grade for this attainment
-    grade_id: i32,
+    grade_id: serde_json::value::Number,
     /// The grade scale used in this attainment.
     /// Has to follow an OTM number pattern.
     grade_scale_id: String,
@@ -449,6 +449,11 @@ mod tests {
             panic!("No total credits!")
         }
         // Test grade_id
+        if let Some(id) = grade_id.as_i64() {
+            assert_eq!(id, 0);
+        } else {
+            panic!("invalid grade id!")
+        }
         // Test grade_scale_id
         // Test id
         // Test misregistration
