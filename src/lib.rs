@@ -455,10 +455,15 @@ mod tests {
             panic!("invalid grade id!")
         }
         // Test grade_scale_id
+        assert_eq!(grade_scale_id, "string");
         // Test id
+        assert_eq!(id, "string");
         // Test misregistration
+        assert!(misregistration);
         // Test misregistration_rationale
+        assert_eq!(misregistration_rationale, "string");
         // Test module_content_application_id
+        assert_eq!(module_content_application_id, "string");
         // Test organisations
         // Test person_first_names
         // Test person_id
