@@ -299,52 +299,15 @@ enum AttainmentType {
 
 #[cfg(test)]
 mod tests {
-    /// Deconstrcuts an example response and tests that its fields match the expected contents
     #[test]
-    fn parse_example_from_sisu_swagger_ui () {
-        // Imports from the main module
-        use crate::SISUAttainment;
-        use crate::PersonWithAttainmentAcceptorType;
-        use crate::RoleURN;
-        use crate::LocalizedString;
-        use crate::CreditTransferInfo;
-        use crate::DocumentState;
-        use crate::GradeAverage;
-        use crate::OrganisationRoleShareBase;
+    fn sisu_swagger_ui_example_acceptor_persons () {
         // Parse example JSON response
         let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
         // Test parsed SISU attainment.
         // Start by deconstructing the struct with Rust's pattern matching.
-        let SISUAttainment {
+        let crate::SISUAttainment {
             acceptor_persons,
-            additional_info,
-            attainment_date,
-            attainment_language_urn,
-            credit_transfer_info,
-            credits,
-            document_state,
-            expiry_date,
-            grade_average,
-            grade_id,
-            grade_scale_id,
-            id,
-            misregistration,
-            misregistration_rationale,
-            module_content_application_id,
-            organisations,
-            person_first_names,
-            person_id,
-            person_last_name,
-            person_student_number,
-            primary,
-            registration_date,
-            state,
-            student_application_id,
-            study_field_urn,
-            study_right_id,
-            study_weeks,
-            attainment_type,
-            verifier_person_id,
+            ..
         } = &attainment;
         // Test acceptor_persons
         let only_acceptor = match acceptor_persons.get(0) {
@@ -352,7 +315,7 @@ mod tests {
             None => panic!("No acceptor found!")
         };
         // Deconstruct only acceptor
-        let PersonWithAttainmentAcceptorType {
+        let crate::PersonWithAttainmentAcceptorType {
             person_id,
             role_urn,
             text,
@@ -361,11 +324,11 @@ mod tests {
         // Test for equality
         assert_eq!(person_id, "string");
         match role_urn {
-            RoleURN::ApprovedBy => {}
+            crate::RoleURN::ApprovedBy => {}
             _ => panic!("Wrong acceptor URN type!")
         }
         // Test for LocalizedStrings in acceptor
-        let LocalizedString {
+        let crate::LocalizedString {
             en,
             fi,
             sv
@@ -373,7 +336,7 @@ mod tests {
         assert_eq!(en, "English version");
         assert_eq!(fi, "Finnish version");
         assert_eq!(sv, "Swedish version");
-        let LocalizedString {
+        let crate::LocalizedString {
             en,
             fi,
             sv
@@ -381,16 +344,60 @@ mod tests {
         assert_eq!(en, "English version");
         assert_eq!(fi, "Finnish version");
         assert_eq!(sv, "Swedish version");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_additional_info () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            additional_info,
+            ..
+        } = &attainment;
         // Test additional_info
         assert_eq!(additional_info.en, "English version");
         assert_eq!(additional_info.fi, "Finnish version");
         assert_eq!(additional_info.sv, "Swedish version");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_attainment_date () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            attainment_date,
+            ..
+        } = &attainment;
         // Test attainment_date
         assert_eq!(attainment_date, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_attainment_language_urn () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            attainment_language_urn,
+            ..
+        } = &attainment;
         // Test attainment_language_urn
         assert_eq!(attainment_language_urn, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_credit_transfer_info () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            credit_transfer_info,
+            ..
+        } = &attainment;
         // Test credit_transfer_info
-        let CreditTransferInfo {
+        let crate::CreditTransferInfo {
             credit_transfer_date,
             educational_institution_urn,
             international_institution_urn,
@@ -400,19 +407,63 @@ mod tests {
         assert_eq!(educational_institution_urn, "string");
         assert_eq!(international_institution_urn, "string");
         assert_eq!(organisation, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_credits () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            credits,
+            ..
+        } = &attainment;
         // Test credits
         if let Some(credits) = credits.as_u64() {
             assert_eq!(credits, 0);
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_document_state () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            document_state,
+            ..
+        } = &attainment;
         // Test document_state
         match document_state {
-            DocumentState::Draft => {},
+            crate::DocumentState::Draft => {},
             _ => panic!("Incorrect document state!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_expiry_date () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            expiry_date,
+            ..
+        } = &attainment;
         // Test expiry_date
         assert_eq!(expiry_date, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_grade_average () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            grade_average,
+            ..
+        } = &attainment;
         // Test grade_average
-        let GradeAverage {
+        let crate::GradeAverage {
             grade_scale_id,
             method,
             total_included_credits,
@@ -435,28 +486,105 @@ mod tests {
         } else {
             panic!("No total credits!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_grade_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            grade_id,
+            ..
+        } = &attainment;
         // Test grade_id
         if let Some(id) = grade_id.as_i64() {
             assert_eq!(id, 0);
         } else {
             panic!("invalid grade id!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_grade_scale_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            grade_scale_id,
+            ..
+        } = &attainment;
         // Test grade_scale_id
         assert_eq!(grade_scale_id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            id,
+            ..
+        } = &attainment;
         // Test id
         assert_eq!(id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_misregistration () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            misregistration,
+            ..
+        } = &attainment;
         // Test misregistration
         assert!(misregistration);
+    }
+    #[test]
+    fn sisu_swagger_ui_example_misregistration_rationale () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            misregistration_rationale,
+            ..
+        } = &attainment;
         // Test misregistration_rationale
         assert_eq!(misregistration_rationale, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_module_content_application_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            module_content_application_id,
+            ..
+        } = &attainment;
         // Test module_content_application_id
         assert_eq!(module_content_application_id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_organisations () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            organisations,
+            ..
+        } = &attainment;
         // Test organisations
         let only_organisation = match organisations.get(0) {
             Some(org)   => org,
             None        => panic!("No organisations!")
         };
-        let OrganisationRoleShareBase {
+        let crate::OrganisationRoleShareBase {
             educational_institution_urn,
             organisation_id,
             role_urn,
@@ -470,101 +598,186 @@ mod tests {
         } else {
             panic!("No valid organisation share ∊ [0,1]!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_person_first_names () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            person_first_names,
+            ..
+        } = &attainment;
         // Test person_first_names
         assert_eq!(person_first_names, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_person_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            person_id,
+            ..
+        } = &attainment;
         // Test person_id
         assert_eq!(person_id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_person_last_name () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            person_last_name,
+            ..
+        } = &attainment;
         // Test person_last_name
         assert_eq!(person_last_name, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_person_student_number () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            person_student_number,
+            ..
+        } = &attainment;
         // Test person_student_number
         assert_eq!(person_student_number, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_primary () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            primary,
+            ..
+        } = &attainment;
         // Test primary
         assert!(primary);
+    }
+    #[test]
+    fn sisu_swagger_ui_example_registration_date () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            registration_date,
+            ..
+        } = &attainment;
         // Test registration_date
         assert_eq!(registration_date, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_state () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            state,
+            ..
+        } = &attainment;
         // Test state
         match state {
             crate::AttainmentState::Attained => {},
             _ => panic!("Wrong attainment state!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_student_application_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            student_application_id,
+            ..
+        } = &attainment;
         // Test student_application_id
         assert_eq!(student_application_id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_study_field_urn () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            study_field_urn,
+            ..
+        } = &attainment;
         // Test study_field_urn
         assert_eq!(study_field_urn, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_study_right_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            study_right_id,
+            ..
+        } = &attainment;
         // Test study_right_id
         assert_eq!(study_right_id, "string");
+    }
+    #[test]
+    fn sisu_swagger_ui_example_study_weeks () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            study_weeks,
+            ..
+        } = &attainment;
         // Test study_weeks
         if let Some(number) = study_weeks.as_u64() {
             assert_eq!(number, 0);
         } else {
             panic!("Invalid study week format!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_attainment_type () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            attainment_type,
+            ..
+        } = &attainment;
         // Test attainment_type
         match attainment_type {
             crate::AttainmentType::AssessmentItemAttainment => {},
             _ => panic!("Wrong attainment type!")
         }
+    }
+    #[test]
+    fn sisu_swagger_ui_example_verifier_person_id () {
+        // Parse example JSON response
+        let attainment = parse_example_attainment(SISU_SWAGGER_UI_EXAMPLE_RESPONSE);
+        // Test parsed SISU attainment.
+        // Start by deconstructing the struct with Rust's pattern matching.
+        let crate::SISUAttainment {
+            verifier_person_id,
+            ..
+        } = &attainment;
         // Test verifier_person_id
         assert_eq!(verifier_person_id, "string");
     }
-    #[test]
-    fn sisu_swagger_ui_example_acceptor_persons () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_additional_info () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_attainment_date () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_attainment_language_urn () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_credit_transfer_info () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_credits () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_document_state () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_expiry_date () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_grade_average () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_grade_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_grade_scale_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_misregistration () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_misregistration_rationale () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_module_content_application_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_organisations () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_person_first_names () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_person_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_person_last_name () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_person_student_number () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_primary () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_registration_date () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_state () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_student_application_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_study_field_urn () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_study_right_id () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_study_weeks () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_attainment_type () { todo!() }
-    #[test]
-    fn sisu_swagger_ui_example_verifier_person_id () { todo!() }
 
     /// Automates the steps of retrieving the attainment object from SISU_SWAGGER_UI_EXAMPLE_RESPONSE
     fn parse_example_attainment (example_str: &str) -> crate::SISUAttainment {
