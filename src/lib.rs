@@ -314,6 +314,8 @@ mod tests {
         use crate::AttainmentType;
         use crate::LocalizedString;
         use crate::CreditTransferInfo;
+        use crate::DocumentState;
+        use crate::GradeAverage;
         // Parse example JSON response
         let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
         let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
@@ -416,8 +418,36 @@ mod tests {
             assert_eq!(credits, 0);
         }
         // Test document_state
+        match document_state {
+            DocumentState::Draft => {},
+            _ => panic!("Incorrect document state!")
+        }
         // Test expiry_date
+        assert_eq!(expiry_date, "string");
         // Test grade_average
+        let GradeAverage {
+            grade_scale_id,
+            method,
+            total_included_credits,
+            value,
+        } = &grade_average;
+        assert_eq!(grade_scale_id, "string");
+        match method {
+            crate::AverageCalculationMethod::CourseUnitArithmeticMeanWeightingByCredits
+                => {},
+            crate::AverageCalculationMethod::ArithmeticMeanWeightingByCredits
+                => panic!("Wrong average calculation method!")
+        }
+        if let Some(credits) = total_included_credits.as_u64() {
+            assert_eq!(credits, 0);
+        } else {
+            panic!("No total credits!")
+        }
+        if let Some(credits) = value.as_u64() {
+            assert_eq!(credits, 0);
+        } else {
+            panic!("No total credits!")
+        }
         // Test grade_id
         // Test grade_scale_id
         // Test id
