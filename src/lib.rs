@@ -20,34 +20,35 @@ use serde::{Serialize, Deserialize};
 use serde_json;
 use std::str::FromStr;
 
-#[derive(Serialize, Deserialize)]
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
+#[derive(Serialize, Deserialize)]
+#[serde(rename_all="camelCase")]
 struct SISUAttainment {
     /// Employees who are responsible for giving the attainment
-    acceptorPersons: Vec<PersonWithAttainmentAcceptorType>,
+    acceptor_persons: Vec<PersonWithAttainmentAcceptorType>,
     /// Contains a set of strings localized to English, Finnish and Swedish.
-    additionalInfo: LocalizedString,
+    additional_info: LocalizedString,
     /// The official date this attainment was received.
-    attainmentDate: String,
+    attainment_date: String,
     /// Language of the attainment, typically one of the possible attainment languages of the assessment item
-    attainmentLanguageUrn: String,
+    attainment_language_urn: String,
     /// Credit transfer information for an attainment that has been transferred.
-    creditTransferInfo: CreditTransferInfo,
+    credit_transfer_info: CreditTransferInfo,
     /// The number of credits in this attainment.
     credits: serde_json::value::Number,
     /// A read only string of the document state.
-    documentState: DocumentState,
+    document_state: DocumentState,
     /// The date when this attainment will expire.
     /// Must conform to the date pattern.
-    expiryDate: String,
+    expiry_date: String,
     /// A result of grade average calculation.
-    gradeAverage: GradeAverage,
+    grade_average: GradeAverage,
     /// The index of the grade, within the grade scale, that represents the grade for this attainment
-    gradeId: i32,
+    grade_id: i32,
     /// The grade scale used in this attainment.
     /// Has to follow an OTM number pattern.
-    gradeScaleId: String,
+    grade_scale_id: String,
     /// A Unique identifier (a hash) for this attainment.
     /// Again, has to conform to the OTM number pattern.
     id: String,
@@ -55,24 +56,24 @@ struct SISUAttainment {
     misregistration: bool,
     /// A justification for marking this attainment as misregistered.
     /// Length must be between 1--1024 characters.
-    misregistrationRationale: String,
+    misregistration_rationale: String,
     /// Module content application which affects the same module as this module attainment is for.
     /// Must coform the the OTM-number pattern.
-    moduleContentApplicationId: String,
+    module_content_application_id: String,
     /// Organisations responsible for this attainment in various ways and fractions.
     /// Typically the same list as in the related CourseUnitRealisation
     organisations: Vec<OrganisationRoleShareBase>,
     /// The first names of the student.
     /// NOTE: Only for search purposes.
-    personFirstNames: String,
+    person_first_names: String,
     /// A private person identifier for the student who has this attainment.
-    personId: String,
+    person_id: String,
     /// The last name of the student.
     /// NOTE: Only for search purposes.
-    personLastName: String,
+    person_last_name: String,
     /// The student number of the student.
     /// NOTE: Only for search purposes.
-    personStudentNumber: String,
+    person_student_number: String,
     /// Indicates whether this is the primary attainment.
     /// There may be multiple attainments, for example if the student has tried to increase the grade.
     /// Primary attainment is not necessarily the latest attainment,
@@ -82,28 +83,28 @@ struct SISUAttainment {
     primary: bool,
     /// The date when this attainment was registered into the system.
     /// Must conform to the date pattern.
-    registrationDate: String,
+    registration_date: String,
     /// The state of this attainment.
     state: AttainmentState,
     /// Student application from which this attainment is generated of.
     /// Must comply to OTM number pattern.
-    studentApplicationId: String,
+    student_application_id: String,
     /// Field of study related to this attainment.
     /// Musto comply with the URN pattern.
-    studyFieldUrn: String,
+    study_field_urn: String,
     /// Study right to which this attainment is related to.
     /// Must be a valid OTM number.
-    studyRightId: String,
+    study_right_id: String,
     /// How many study weeks the credits of the attainment represents.
     /// This must be defined only for old attainments that used study weeks,
     /// in order to keep the original study week stored.
-    studyWeeks: serde_json::value::Number,
+    study_weeks: serde_json::value::Number,
     /// A type of attainment.
     /// One of AssessmentItemAttainment, CourseUnitAttainment, ModuleAttainment.
     #[serde(rename="type")]
-    attainmentType: AttainmentType,
+    attainment_type: AttainmentType,
     /// A public person identifier for the person who has done the verification action than converts assessment to attainment.
-    verifierPersonId: String,
+    verifier_person_id: String,
 }
 
 /// Describes a given person or textual personified role that has a given responsibility.
