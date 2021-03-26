@@ -485,23 +485,44 @@ mod tests {
             panic!("No valid organisation share ∊ [0,1]!")
         }
         // Test person_first_names
+        assert_eq!(person_first_names, "string");
         // Test person_id
+        assert_eq!(person_id, "string");
         // Test person_last_name
+        assert_eq!(person_last_name, "string");
         // Test person_student_number
+        assert_eq!(person_student_number, "string");
         // Test primary
+        assert!(primary);
         // Test registration_date
+        assert_eq!(registration_date, "string");
         // Test state
+        match state {
+            crate::AttainmentState::Attained => {},
+            _ => panic!("Wrong attainment state!")
+        }
         // Test student_application_id
+        assert_eq!(student_application_id, "string");
         // Test study_field_urn
+        assert_eq!(study_field_urn, "string");
         // Test study_right_id
+        assert_eq!(study_right_id, "string");
         // Test study_weeks
+        if let Some(number) = study_weeks.as_u64() {
+            assert_eq!(number, 0);
+        } else {
+            panic!("Invalid study week format!")
+        }
         // Test attainment_type
+        match attainment_type {
+            crate::AttainmentType::AssessmentItemAttainment => {},
+            _ => panic!("Wrong attainment type!")
+        }
         // Test verifier_person_id
         match attainment.attainment_type {
             AttainmentType::AssessmentItemAttainment => {},
             _ => panic!("Attainment type did not match!")
         }
-        todo!("test not finished")
     }
     /// The example JSON response found in the SISU Swagger UI:
     /// https://sis-tuni.funidata.fi/ori/swagger-ui.html#/attainment-controller/getAttainmentsUsingGET
