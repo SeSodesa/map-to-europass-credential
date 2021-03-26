@@ -316,6 +316,7 @@ mod tests {
         use crate::CreditTransferInfo;
         use crate::DocumentState;
         use crate::GradeAverage;
+        use crate::OrganisationRoleShareBase;
         // Parse example JSON response
         let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
         let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
@@ -465,6 +466,24 @@ mod tests {
         // Test module_content_application_id
         assert_eq!(module_content_application_id, "string");
         // Test organisations
+        let only_organisation = match organisations.get(0) {
+            Some(org)   => org,
+            None        => panic!("No organisations!")
+        };
+        let OrganisationRoleShareBase {
+            educational_institution_urn,
+            organisation_id,
+            role_urn,
+            share,
+        } = &only_organisation;
+        assert_eq!(educational_institution_urn, "string");
+        assert_eq!(organisation_id, "string");
+        assert_eq!(role_urn, "string");
+        if let Some(number) = share.as_f64() {
+            assert_eq!(number, 0.0);
+        } else {
+            panic!("No valid organisation share ∊ [0,1]!")
+        }
         // Test person_first_names
         // Test person_id
         // Test person_last_name
