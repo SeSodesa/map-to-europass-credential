@@ -326,9 +326,13 @@ mod tests {
               }
             ]"#;
         use crate::SISUAttainment;
-        let att: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
+        let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
             Ok(att) => att,
             Err(e)  => panic!("{}", e)
+        };
+        let attainment = match att_vec.get(0) {
+            Some(att) => att,
+            None => panic!("No attainment in JSON array!")
         };
         todo!()
     }
