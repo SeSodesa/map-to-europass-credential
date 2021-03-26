@@ -312,6 +312,7 @@ mod tests {
         use crate::PersonWithAttainmentAcceptorType;
         use crate::RoleURN;
         use crate::AttainmentType;
+        use crate::LocalizedString;
         // Parse example JSON response
         let example_str = SISU_SWAGGER_UI_EXAMPLE_RESPONSE;
         let att_vec: Vec<SISUAttainment> = match serde_json::from_str(example_str) {
@@ -366,13 +367,30 @@ mod tests {
             role_urn,
             text,
             title,
-        } = only_acceptor;
+        } = &only_acceptor;
         // Test for equality
-        assert_eq!(person_id.as_str(), "string");
+        assert_eq!(person_id, "string");
         match role_urn {
             RoleURN::ApprovedBy => {}
             _ => panic!("Wrong acceptor URN type!")
         }
+        // Test for LocalizedStrings in acceptor
+        let LocalizedString {
+            en,
+            fi,
+            sv
+        } = &text;
+        assert_eq!(en, "English version");
+        assert_eq!(fi, "Finnish version");
+        assert_eq!(sv, "Swedish version");
+        let LocalizedString {
+            en,
+            fi,
+            sv
+        } = &title;
+        assert_eq!(en, "English version");
+        assert_eq!(fi, "Finnish version");
+        assert_eq!(sv, "Swedish version");
         // Test additional_info
         // Test attainment_date
         // Test attainment_language_urn
