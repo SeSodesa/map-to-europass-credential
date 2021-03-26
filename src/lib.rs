@@ -14,7 +14,7 @@ so in addition to a format transformation, a field transformation is performed a
 // These is to allow non-snake and camel case names, which are required to allow serde to deserialize
 // (as in parse) SISU attainments automatically into the below SISUAttainment instances.
 #![allow(non_snake_case)]
-#![allow(non_camel_case_types)]
+//#![allow(non_camel_case_types)]
 
 use serde::{Serialize, Deserialize};
 use serde_json;
@@ -189,10 +189,11 @@ struct CreditTransferInfo {
 
 /// The state a document is in.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="SCREAMING_SNAKE_CASE")]
 enum DocumentState {
-    DRAFT,
-    ACTIVE,
-    DELETED
+    Draft,
+    Active,
+    Deleted,
 }
 
 /// A type that contains information about an average grade calculation.
@@ -212,9 +213,10 @@ struct GradeAverage {
 
 /// An enum describing how a grade average was calculated.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="SCREAMING_SNAKE_CASE")]
 enum AverageCalculationMethod {
-    COURSE_UNIT_ARITHMETIC_MEAN_WEIGHTING_BY_CREDITS,
-    ARITHMETIC_MEAN_WEIGHTING_BY_CREDITS
+    CourseUnitArithmeticMeanWeightingByCredits,
+    ArithmeticMeanWeightingByCredits
 }
 
 /// Organisations responsible for an attainment in various ways and fractions.
@@ -237,15 +239,17 @@ struct OrganisationRoleShareBase {
 
 /// A state an attainment could be in.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="SCREAMING_SNAKE_CASE")]
 enum AttainmentState {
-    ATTAINED,
-    INCLUDED,
-    SUBSTITUTED,
-    FAILED
+    Attained,
+    Included,
+    Substituted,
+    Failed,
 }
 
 /// A type of attainment.
 #[derive(Serialize, Deserialize)]
+#[serde(rename_all="PascalCase")]
 enum AttainmentType {
     AssessmentItemAttainment,
     CourseUnitAttainment,
