@@ -282,7 +282,7 @@ mod tests {
         }
         todo!("test not finished")
     }
-    /// The example JSON response found in the SISU swagger UI:
+    /// The example JSON response found in the SISU Swagger UI:
     /// https://sis-tuni.funidata.fi/ori/swagger-ui.html#/attainment-controller/getAttainmentsUsingGET
     const SISU_SWAGGER_UI_EXAMPLE_RESPONSE: &'static str =
         r#"[
