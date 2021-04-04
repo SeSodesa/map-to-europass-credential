@@ -5,7 +5,8 @@ the [SISU Swagger UI](https://sis-tuni.funidata.fi/ori/swagger-ui.html#/attainme
 whereas information concerning the Europass credentials can be found on Github,
 under the [Europass Learning Model documentation](https://github.com/european-commission-europass/Europass-Learning-Model/tree/master/Credentials).
 
-SISU provides the attainments in JSON format, whereas the Europass API accepts XML documents as input.
+SISU provides the attainments in JSON format,
+whereas the Europass API accepts XML documents as input.
 The mapping therefore needs to perform this JSON → XML transformation.
 The fields in the JSON provided by SISU also do not match the ones in Europass XML documents,
 so in addition to a format transformation, a field transformation is performed as well.
@@ -25,7 +26,8 @@ struct SISUAttainment {
     additional_info: LocalizedString,
     /// The official date this attainment was received.
     attainment_date: String,
-    /// Language of the attainment, typically one of the possible attainment languages of the assessment item
+    /// Language of the attainment, typically one of the possible
+    /// attainment languages of the assessment item
     attainment_language_urn: String,
     /// Credit transfer information for an attainment that has been transferred.
     credit_transfer_info: CreditTransferInfo,
@@ -38,7 +40,8 @@ struct SISUAttainment {
     expiry_date: String,
     /// A result of grade average calculation.
     grade_average: GradeAverage,
-    /// The index of the grade, within the grade scale, that represents the grade for this attainment
+    /// The index of the grade, within the grade scale,
+    /// that represents the grade for this attainment
     grade_id: serde_json::value::Number,
     /// The grade scale used in this attainment.
     /// Has to follow an OTM number pattern.
@@ -51,8 +54,9 @@ struct SISUAttainment {
     /// A justification for marking this attainment as misregistered.
     /// Length must be between 1--1024 characters.
     misregistration_rationale: String,
-    /// Module content application which affects the same module as this module attainment is for.
-    /// Must coform the the OTM-number pattern.
+    /// Module content application which affects the same module as
+    /// this module attainment is for.
+    /// Must conform the the OTM-number pattern.
     module_content_application_id: String,
     /// Organisations responsible for this attainment in various ways and fractions.
     /// Typically the same list as in the related CourseUnitRealisation
@@ -69,10 +73,12 @@ struct SISUAttainment {
     /// NOTE: Only for search purposes.
     person_student_number: String,
     /// Indicates whether this is the primary attainment.
-    /// There may be multiple attainments, for example if the student has tried to increase the grade.
+    /// There may be multiple attainments, for example if the student
+    /// has tried to increase the grade.
     /// Primary attainment is not necessarily the latest attainment,
     /// as an earlier grade may be better than a later try.
-    /// There can be only one primary attainment per student related to a module or a course unit cloud,
+    /// There can be only one primary attainment per student related to
+    /// a module or a course unit cloud,
     /// or an attainment item.
     primary: bool,
     /// The date when this attainment was registered into the system.
@@ -97,7 +103,8 @@ struct SISUAttainment {
     /// One of AssessmentItemAttainment, CourseUnitAttainment, ModuleAttainment.
     #[serde(rename="type")]
     attainment_type: AttainmentType,
-    /// A public person identifier for the person who has done the verification action than converts assessment to attainment.
+    /// A public person identifier for the person who has done
+    /// the verification action than converts assessment to attainment.
     verifier_person_id: String,
 }
 
@@ -197,11 +204,13 @@ struct CreditTransferInfo {
     /// Educational institution where this credit was originally attained.
     /// Must be URN code compliant.
     educational_institution_urn: String,
-    /// Specific international institution if educational institution refers to other/foreign institution.
+    /// Specific international institution if educational institution
+    /// refers to other/foreign institution.
     /// Must be a valid URN code.
     international_institution_urn: String,
-    /// Description of the university or organisation if no suitable internationalInstitutionUrn
-    /// can be given. Must be between 0--8000 characters long.
+    /// Description of the university or organisation if no suitable
+    /// internationalInstitutionUrn can be given.
+    /// Must be between 0--8000 characters long.
     organisation: String,
 }
 
