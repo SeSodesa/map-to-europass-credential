@@ -412,7 +412,19 @@ struct LearningSpecification {
 /// A specification of an assessment and validation process which is
 /// obtained when a competent authority determines that an individual
 /// has achieved learning outcomes to given standards.
-struct Qualification;
+struct Qualification {
+    /// Indicates whether a qualification is a
+    /// full qualification or part of another qualification.
+    is_partial_qualification: IndicatorType,
+    /// The qualification level as specified by
+    /// the European Qualification Framework.
+    eqf_level: Code,
+    /// The qualification level as specified by
+    /// a National Qualification Framework.
+    nqf_level: Code,
+    /// The accreditation of a qualification.
+    has_accreditation: Box<Accreditation>,
+}
 /// A statement regarding what a learner knows, understands and is able
 /// to do on completion of a learning process, which are defined in terms
 /// of knowledge, skills and responsibility and autonomy.
