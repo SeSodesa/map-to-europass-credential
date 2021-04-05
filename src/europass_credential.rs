@@ -40,7 +40,7 @@ struct EuropassCredential {
     /// The type of this credential.
     /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2
     /// for details.
-    credential_type: Code,
+    credential_type: CredentialType,
     /// The full official title of the issued credential
     /// (maximum 50 characters).
     title: Text,
@@ -64,6 +64,21 @@ struct EuropassCredential {
     /// Smaller sub-credentials (micro-credentials),
     /// that make up this larger credential when combined.
     contains: Box<EuropassCredential>,
+}
+
+/// An enumeration of the standard Europass credential types.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2.
+enum CredentialType {
+    /// Represents a credential which describes that an activity has been or is being done
+    LearningActivity,
+    /// Represents the award of a qualification by an institution that is accredited to do so, confirmed by its inclusion in the Europass Accreditation Database.
+    QualificationAward,
+    /// Represents the award of a higher education qualification by an institution that is accredited to do so, confirmed by its inclusion in the Europass Accreditation Database, and including all diploma supplement information.
+    DiplomaSupplement,
+    /// Represents a credential which describes that the user has received a right.
+    LearningEntitlement,
+    /// This is the default Europass credential type.
+    Generic,
 }
 
 /// The cryptographic proof that can be used to detect tampering and
