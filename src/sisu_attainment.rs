@@ -5,6 +5,7 @@ It also contains the types of the fields of `SISUAttainment`.
 
 use serde::{Serialize, Deserialize};
 use serde_json;
+use chrono;
 
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
@@ -16,7 +17,7 @@ struct SISUAttainment {
     /// Contains a set of strings localized to English, Finnish and Swedish.
     additional_info: LocalizedString,
     /// The official date this attainment was received.
-    attainment_date: String,
+    attainment_date: chrono::naive::NaiveDate,
     /// Language of the attainment, typically one of the possible
     /// attainment languages of the assessment item
     attainment_language_urn: String,
@@ -28,7 +29,7 @@ struct SISUAttainment {
     document_state: DocumentState,
     /// The date when this attainment will expire.
     /// Must conform to the date pattern.
-    expiry_date: String,
+    expiry_date: chrono::naive::NaiveDate,
     /// A result of grade average calculation.
     grade_average: GradeAverage,
     /// The index of the grade, within the grade scale,
@@ -74,7 +75,7 @@ struct SISUAttainment {
     primary: bool,
     /// The date when this attainment was registered into the system.
     /// Must conform to the date pattern.
-    registration_date: String,
+    registration_date: chrono::naive::NaiveDate,
     /// The state of this attainment.
     state: AttainmentState,
     /// Student application from which this attainment is generated of.
@@ -191,7 +192,7 @@ struct LocalizedString {
 #[serde(rename_all="camelCase")]
 struct CreditTransferInfo {
     /// The date of the credit transfer
-    credit_transfer_date: String,
+    credit_transfer_date: chrono::naive::NaiveDate,
     /// Educational institution where this credit was originally attained.
     /// Must be URN code compliant.
     educational_institution_urn: String,
@@ -348,7 +349,7 @@ mod tests {
             ..
         } = &attainment;
         // Test attainment_date
-        assert_eq!(attainment_date, "string");
+        assert_eq!(attainment_date, &chrono::naive::NaiveDate::from_ymd(2019,1,1));
     }
     #[test]
     fn sisu_swagger_ui_example_attainment_language_urn () {
@@ -380,7 +381,7 @@ mod tests {
             international_institution_urn,
             organisation,
         } = &credit_transfer_info;
-        assert_eq!(credit_transfer_date, "string");
+        assert_eq!(credit_transfer_date, &chrono::naive::NaiveDate::from_ymd(2019,1,1));
         assert_eq!(educational_institution_urn, "string");
         assert_eq!(international_institution_urn, "string");
         assert_eq!(organisation, "string");
@@ -427,7 +428,7 @@ mod tests {
             ..
         } = &attainment;
         // Test expiry_date
-        assert_eq!(expiry_date, "string");
+        assert_eq!(expiry_date, &chrono::naive::NaiveDate::from_ymd(2019,1,1));
     }
     #[test]
     fn sisu_swagger_ui_example_grade_average () {
@@ -652,7 +653,7 @@ mod tests {
             ..
         } = &attainment;
         // Test registration_date
-        assert_eq!(registration_date, "string");
+        assert_eq!(registration_date, &chrono::naive::NaiveDate::from_ymd(2019,1,1));
     }
     #[test]
     fn sisu_swagger_ui_example_state () {
@@ -760,7 +761,7 @@ mod tests {
     fn parse_example_attainment (example_str: &str) -> crate::sisu_attainment::SISUAttainment {
         let mut att_vec: Vec<crate::sisu_attainment::SISUAttainment> = match serde_json::from_str(example_str) {
             Ok(att) => att,
-            Err(e)  => panic!("{}", e)
+            Err(e)  => panic!("Could not parse example SISU attainment: {}", e)
         };
         let attainment = match att_vec.pop() {
             Some(attainment) => attainment,
@@ -794,17 +795,17 @@ mod tests {
                   "fi": "Finnish version",
                   "sv": "Swedish version"
                 },
-                "attainmentDate": "string",
+                "attainmentDate": "2019-01-01",
                 "attainmentLanguageUrn": "string",
                 "creditTransferInfo": {
-                  "creditTransferDate": "string",
+                  "creditTransferDate": "2019-01-01",
                   "educationalInstitutionUrn": "string",
                   "internationalInstitutionUrn": "string",
                   "organisation": "string"
                 },
                 "credits": 0,
                 "documentState": "DRAFT",
-                "expiryDate": "string",
+                "expiryDate": "2019-01-01",
                 "gradeAverage": {
                   "gradeScaleId": "string",
                   "method": "COURSE_UNIT_ARITHMETIC_MEAN_WEIGHTING_BY_CREDITS",
@@ -830,7 +831,7 @@ mod tests {
                 "personLastName": "string",
                 "personStudentNumber": "string",
                 "primary": true,
-                "registrationDate": "string",
+                "registrationDate": "2019-01-01",
                 "state": "ATTAINED",
                 "studentApplicationId": "string",
                 "studyFieldUrn": "string",
