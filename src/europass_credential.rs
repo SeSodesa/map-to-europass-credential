@@ -670,7 +670,37 @@ struct GradingScheme {
 }
 /// The acquisition of knowledge, skills or responsibility and autonomy.
 /// A recognised and/or awarded set of learning outcomes of an individual.
-struct LearningAchievement;
+struct LearningAchievement {
+    /// A portable and identifier of the learning achievement.
+    id: URI,
+    /// An alternative identifier assigned to the achievement
+    /// by the organisation awarding the achievement.
+    identifier: Identifier,
+    /// The title of the achievement.
+    title: Text,
+    /// A description of the achievement.
+    description: Note,
+    /// An additional free text note about the achievement.
+    additional_note: Note,
+    /// An assessment which proves the acquisition of
+    /// the learning outcomes which make up the achievement.
+    was_derived_from: Assessment,
+    /// Activities which contributed to the acquisition of
+    /// the learning outcomes which make up the achievement.
+    was_influenced_by: LearningActivity,
+    /// The awarding details of this achievement.
+    was_awarded_by: AwardingProcess,
+    /// Smaller units of achievement,
+    /// which when combined make up this achievement.
+    has_part: Box<LearningAchievement>,
+    /// Entitlements the owner has received as a result of this achievement.
+    entitles_to: Entitlement,
+    /// What has been learned.
+    specfied_by: LearningSpecification,
+    /// The learning opportunity that was taken to obtain
+    /// the awarded LearningSpecification.
+    associated_learning_opportunity: LearningOpportunity,
+}
 /// A formal outcome of an assessment and validation process which is obtained
 /// when a competent authority determines that an individual has achieved
 /// learning outcomes to given standards.
