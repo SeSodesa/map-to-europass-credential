@@ -65,6 +65,15 @@ struct EuropassCredential {
     contains: Box<EuropassCredential>,
 }
 
+/// The cryptographic proof that can be used to detect tampering and
+/// verify the authorship of a credential or presentation.
+struct Proof {
+    /// The code indicating how to display the summary view of the credential.
+    display_code: String,
+    /// The background image of the credential.
+    background: ImageObject
+}
+
 /// An abstract entity that is able to carry out actions.
 struct Agent {
     /// A portable identifier of the agent.
@@ -181,7 +190,75 @@ struct Organisation {
     logo: ImageObject,
 }
 
-struct Accreditation;
+/// Details to Contact an Agent. A contact point for an agent.
+struct ContactInformation {
+    /// A note about the contactpoint
+    /// (e.g. availibility or usage note)
+    note: Note,
+    /// A free text describing the contact details.
+    description: Note,
+    /// A postal address used for contacting the agent.
+    postal_address: Address,
+    /// A phone number used for contacting the agent.
+    phone: Phone,
+    /// An e-mail address used for contacting the agent.
+    email: MailBox,
+    /// The wallet address of the agent.
+    wallet_address: MailBox,
+    /// A contact form used for contacting the agent.
+    contact_form: InteractiveWebResource,
+}
+
+/// The quality assurance or licensing of an organisation or a qualification.
+/// An accreditation instance can be used to specify information about:
+///
+/// *   the quality assurance and/or licensing of an organisation.
+/// *   the quality assurance and/or licensing of an organisation
+///     with respect to a specific qualification.
+struct Accreditation {
+    /// The portable and unique identifier of the accreditation record.
+    id: URI,
+    /// An alternative Identifier of the Accreditation,
+    /// as assigned to it by the accrediting agent.
+    identifier: Identifier,
+    /// The type of accreditation.
+    accreditation_type: Code,
+    /// The title of the accreditation.
+    title: Text,
+    /// A description of this accreditation.
+    description: Note,
+    /// The Quality Decision issued by the Quality Assuring Authority.
+    decision: TextualScore,
+    /// A publicly accessible report of the quality assurance decision.
+    report: WebDocument,
+    /// The organisation whose activities are being accredited.
+    organisation: Box<Organisation>,
+    /// The qualification that was accredited.
+    limit_qualification: Qualification,
+    /// The field of education for which the accreditation is valid.
+    limit_field: Code,
+    /// The european qualification level for which the accreditation is valid.
+    limit_eqf_level: Code,
+    /// The jurisdiction for which the accreditation is valid.
+    limit_jurisdiction: Code,
+    /// The Quality Assuring Authority. (i.e assurer)
+    accrediting_agent: Box<Organisation>,
+    /// The date when the accreditation was formally approved/issued.
+    issue_date: chrono::naive::NaiveDateTime,
+    /// The date when the accreditation has to be re-viewed.
+    review_date: chrono::naive::NaiveDateTime,
+    /// The date when the accreditation expires or was expired.
+    expiry_date: chrono::naive::NaiveDateTime,
+    /// An additional free text note about the accreditation.
+    additional_note: Note,
+    /// The homepage of the accreditation.
+    home_page: WebDocument,
+    /// The landingpage of the accreditation.
+    landing_page: WebDocument,
+    /// A public web document containing additional
+    /// documentation describing the Accreditation Procedures and Standards
+    supplementary_document: WebDocument,
+}
 
 /// The Europass Standard List of Credential Types is a centrally devised
 /// list of customised credential profiles that issuing organisations can
@@ -205,6 +282,37 @@ enum EuropassCredentialType {
     Generic,
 }
 
+/// A verifiable presentation of a set of credentials.
+/// A composition of a set of credentials that can be presented to
+/// and verified by a verifier.
+struct VerifiablePresentation {
+    /// A portable identifier of the presentation.
+    id: URI
+}
+/// A verifiable presentation of a set of Europass credentials.
+struct EuropassPresentation {
+    /// A verifiable EuropassCredential.
+    verfiable_credential: EuropassCredential,
+    ///
+    verification_check: VerificationCheck,
+    /// The cryptographic proof that can be used
+    /// to detect tampering and verify the authorship of a presentation.
+    proof: Proof,
+}
+/// A verification check.
+struct VerificationCheck {
+    /// The portable and unique identifier of the verification check
+    id: URI,
+    /// The type of verification check.
+    /// One of Europass standard list of verification types.
+    check_type: Code,
+    /// The credential subject of this verififcation check.
+    subject: EuropassCredential,
+    /// The result of the check.
+    status: Code,
+    /// A free text description of the check and the result.
+    description: Note,
+}
 
 /// The types of attachments that might come with a Europass credential.
 enum EuropassAttachment {
@@ -214,15 +322,6 @@ enum EuropassAttachment {
     PNG,
     /// JPEG
     JPEG,
-}
-
-/// The cryptographic proof that can be used to detect tampering and
-/// verify the authorship of a credential or presentation.
-struct Proof {
-    /// The code indicating how to display the summary view of the credential.
-    display_code: String,
-    /// The background image of the credential.
-    background: ImageObject
 }
 
 /// A description of what a person may learn using the opportunity,
