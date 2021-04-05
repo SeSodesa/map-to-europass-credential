@@ -35,7 +35,7 @@ struct VerifiableCredential {
 /// learning outcomes through formal, non-formal or informal learning.
 struct EuropassCredential {
     /// The identifier of this Europass Credential.
-    identifier: String,
+    identifier: Identifier,
     /// The type of this credential.
     /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2
     /// for details.
