@@ -428,7 +428,29 @@ struct Qualification {
 /// A statement regarding what a learner knows, understands and is able
 /// to do on completion of a learning process, which are defined in terms
 /// of knowledge, skills and responsibility and autonomy.
-struct LearningOutcome;
+struct LearningOutcome {
+    /// A portable and unique identifier of the learning outcome.
+    id: URI,
+    /// An alternative identifier of the learning outcome.
+    identifier: Identifier,
+    /// A legible, descriptive name for the learning outcome.
+    name: Text,
+    /// A free text describing the learning outcome.
+    /// A detailed learning outcome may include a description of what
+    /// the student can do as a result of learning, with an indication
+    /// of the level of achievement, and the conditions or context under
+    /// which this can be performed (if applicable).
+    description: Note,
+    /// The learning outcome type.
+    learning_outcome_type: Code,
+    /// The reusability level.
+    reusability_level: Code,
+    /// A link to a related skill or the level of
+    /// a related skill on a skill framework (except ESCO).
+    related_skill: Code,
+    /// A link to an ESCO Skill.
+    related_esco_skill: Code,
+}
 /// The specification of a process which leads to the acquisition of knowledge,
 /// skills or responsibility and autonomy.
 struct LearningActivitySpecification;
