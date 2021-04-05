@@ -648,12 +648,13 @@ impl std::convert::TryFrom<&str> for MDRcurrency {
     }
 }
 
-/// Standard List of Europass Credential types. See
-/// https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/credential
-/// for details.
+/// The types of attachments that might come with a Europass credential.
 enum EuropassAttachment {
+    /// Portable Document Format
     PDF,
+    /// Portable Network Graphics
     PNG,
+    /// JPEG
     JPEG,
 }
 
