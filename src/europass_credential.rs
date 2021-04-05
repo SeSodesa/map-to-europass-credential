@@ -262,6 +262,7 @@ struct Accreditation {
 }
 
 /// This is an enumeration of the standard list of EU accreditation types.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/accreditation/25831c2.
 enum AccreditationType {
     /// A licencing procedure applied at the level of an organisation.
     /// Institutional Licencing implies permission for the institution to operate,
@@ -592,7 +593,7 @@ struct AssessmentSpecification {
     /// about the assessment specification.
     supplementary_document: WebDocument,
     /// The type of assessment.
-    assessment_type: Code,
+    assessment_type: AssessmentType,
     /// The language(s) of assessment used.
     language: Code,
     /// The mode of learning and or assessment.
@@ -611,6 +612,26 @@ struct AssessmentSpecification {
     /// this specification is a specialisation.
     specialisation_of: Box<AssessmentSpecification>,
 }
+
+/// Europass standard list of assessment types.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/assessment/25831c2
+enum AssessmentType {
+    PeerAssessment,
+    MarkedAssignment,
+    ContinuousEvaluation,
+    Portfolio,
+    GroupPerformance,
+    PracticalAssessment,
+    WrittenExamination,
+    LevelOfAttendance,
+    ProjectWork,
+    PeerReview,
+    Quiz,
+    ProblemBasedLearning,
+    OralExamination,
+    ArtefactAssessment,
+}
+
 struct ScoringScheme;
 
 /// The result of a process establishing the extent to which a learner
