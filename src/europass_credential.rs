@@ -768,7 +768,7 @@ struct AwardingOpportunity {
 /// as a result of the acquisition of knowledge, skills,
 /// responsibility and/or autonomy.
 struct Entitlement {
-    /// A portable and identifier of the entitlement. id
+    /// A portable and identifier of the entitlement.
     id: URI,
     /// An alternative identifier of the entitlement.
     identifier: Identifier,
