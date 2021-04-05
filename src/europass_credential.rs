@@ -743,7 +743,26 @@ struct AwardingProcess {
 /// a LearningSpecification. It is used to specify the country or region
 /// where the LearningSpecification is awarded, the awarding body and
 /// optionally the awarding period now or in the past.
-struct AwardingOpportunity;
+struct AwardingOpportunity {
+    /// A portable identifier of the awarding opportunity.
+    id: URI,
+    /// An alternative identifier of the awarding opportunity.
+    identifier: Identifier,
+    /// The awarding body related to this awarding activity,
+    /// i.e the organisation that issues the qualification.
+    /// Only in cases of co-awarding/co-graduation,
+    /// where a qualification is issued to an individual by two
+    /// or more organisations the cardinality is greater than 1.
+    awarding_body: Organisation,
+    /// Location where the awarding activity takes place,
+    /// the country/region where the qualification is awarded.
+    location: Code,
+    /// The date since when the awarding activities take place.
+    /// If not specified it is undefined (“not known”)
+    started_at_time: chrono::naive::NaiveDateTime,
+    /// The date until when the awarding activities take/took place
+    ended_at_time: chrono::naive::NaiveDateTime,
+}
 /// A right, e.g. to practice a profession, take advantage of
 /// a learning opportunity or join an organisation,
 /// as a result of the acquisition of knowledge, skills,
