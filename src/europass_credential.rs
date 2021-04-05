@@ -639,7 +639,20 @@ struct ResultDistribution {
 }
 /// Description of a single score or score range within
 /// a histogram of results.
-struct ResultCategory;
+struct ResultCategory {
+    /// The label of the histogram score or score range.
+    /// Should correspond to the grading scheme which have been used.
+    /// E.g. 'C', or '20-30'.
+    label: Text,
+    /// N/A
+    score: Score,
+    /// N/A
+    min_score: Score,
+    /// N/A
+    max_score: Score,
+    /// N/A
+    count: PositiveInteger,
+}
 /// A set of criteria that measures varying levels of achievement.
 struct GradingScheme;
 /// The acquisition of knowledge, skills or responsibility and autonomy.
