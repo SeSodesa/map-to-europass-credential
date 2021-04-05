@@ -16,14 +16,14 @@ struct VerifiableCredential {
     /// Has to be a valid URI.
     id: Identifier,
     /// The issuance date of the credential.
-    issuance_date: chrono::naive::NaiveDate,
+    issuance_date: chrono::naive::NaiveDateTime,
     /// The date and time the credential was digitally signed.
-    issued: chrono::naive::NaiveDate,
+    issued: chrono::naive::NaiveDateTime,
     /// The earliest date when the information associated with
     /// the credentialSubject property became valid.
-    valid_from: chrono::naive::NaiveDate,
+    valid_from: chrono::naive::NaiveDateTime,
     /// The expiration date of this credential.
-    expiration_date: chrono::naive::NaiveDate,
+    expiration_date: chrono::naive::NaiveDateTime,
     /// The Europass Credential carried within this verifiable credential.
     europass_credential: EuropassCredential,
 }
