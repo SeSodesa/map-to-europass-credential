@@ -30,7 +30,6 @@ struct VerifiableCredential {
     europass_credential: EuropassCredential,
 }
 
-
 /// A set of claims made by an issuer in Europe, using the Europass Standards.
 /// A Europass credential is a set of one or more claims which may be used to
 /// demonstrate that the owner has certain skills or has achieved certain
@@ -291,6 +290,7 @@ struct VerifiablePresentation {
     /// A portable identifier of the presentation.
     id: URI
 }
+
 /// A verifiable presentation of a set of Europass credentials.
 struct EuropassPresentation {
     /// A verifiable EuropassCredential.
@@ -301,6 +301,7 @@ struct EuropassPresentation {
     /// to detect tampering and verify the authorship of a presentation.
     proof: Proof,
 }
+
 /// A verification check.
 struct VerificationCheck {
     /// The portable and unique identifier of the verification check
@@ -427,6 +428,7 @@ struct Qualification {
     /// The accreditation of a qualification.
     has_accreditation: Box<Accreditation>,
 }
+
 /// A statement regarding what a learner knows, understands and is able
 /// to do on completion of a learning process, which are defined in terms
 /// of knowledge, skills and responsibility and autonomy.
@@ -453,6 +455,7 @@ struct LearningOutcome {
     /// A link to an ESCO Skill.
     related_esco_skill: Code,
 }
+
 /// The specification of a process which leads to the acquisition of knowledge,
 /// skills or responsibility and autonomy.
 struct LearningActivitySpecification {
@@ -498,6 +501,7 @@ struct LearningActivitySpecification {
     /// of which this specification is a specialisation.
     specialisation_of: Box<LearningActivitySpecification>,
 }
+
 /// Any process which leads to the acquisition of knowledge,
 /// skills or responsibility and autonomy.
 struct LearningActivity {
@@ -536,8 +540,10 @@ struct LearningActivity {
     /// Smaller units of activity, which when combined make up this activity.
     has_part: Box<LearningActivity>,
 }
+
 struct Achievement;
 struct LearningOpportunity;
+
 /// An Assessment Specification is a specification of a process establishing
 /// the extent to which a learner has attained particular knowledge,
 /// skills and competences against criteria such as learning outcomes or
@@ -583,6 +589,7 @@ struct AssessmentSpecification {
     specialisation_of: Box<AssessmentSpecification>,
 }
 struct ScoringScheme;
+
 /// The result of a process establishing the extent to which a learner
 /// has attained particular knowledge, skills and competences against
 /// criteria such as learning outcomes or standards of competence.
@@ -618,6 +625,7 @@ struct Assessment {
     /// and can influence this assessment.
     has_part: Box<Assessment>,
 }
+
 /// Indicator of how well the student was graded when compared
 /// to other students.
 struct ShortenedGrading {
@@ -631,6 +639,7 @@ struct ShortenedGrading {
     /// course who got a higher grade.
     precentage_higher: Numeric,
 }
+
 /// Describes a histogram of results achieved by all the students
 /// of this course instance.
 struct ResultDistribution {
@@ -639,6 +648,7 @@ struct ResultDistribution {
     /// Free text description of the histogram.
     description: Note,
 }
+
 /// Description of a single score or score range within
 /// a histogram of results.
 struct ResultCategory {
@@ -655,6 +665,7 @@ struct ResultCategory {
     /// N/A
     count: PositiveInteger,
 }
+
 /// A set of criteria that measures varying levels of achievement.
 struct GradingScheme {
     /// A portable and unique identifier of the Grading Scheme.
@@ -670,6 +681,7 @@ struct GradingScheme {
     /// documentation about the scoring system.
     supplementary_document: WebDocument,
 }
+
 /// The acquisition of knowledge, skills or responsibility and autonomy.
 /// A recognised and/or awarded set of learning outcomes of an individual.
 struct LearningAchievement {
@@ -703,6 +715,7 @@ struct LearningAchievement {
     /// the awarded LearningSpecification.
     associated_learning_opportunity: LearningOpportunity,
 }
+
 /// A formal outcome of an assessment and validation process which is obtained
 /// when a competent authority determines that an individual has achieved
 /// learning outcomes to given standards.
@@ -710,6 +723,7 @@ struct QualificationAwarded {
     /// The details of the awarded qualification.
     specified_by: Qualification,
 }
+
 /// The process of an organisation awarding Learning Achievement to person based
 /// on a Learning Specification (e.g. a qualification). It is used to specify
 /// the organisation that awarded the LearningSpecification to the individual,
@@ -741,6 +755,7 @@ struct AwardingProcess {
     /// If not specified it is undefined (“not known”).
     awarding_date: chrono::naive::NaiveDateTime,
 }
+
 /// An awarding activity represents an activity related to the awarding of
 /// a LearningSpecification. It is used to specify the country or region
 /// where the LearningSpecification is awarded, the awarding body and
@@ -765,6 +780,7 @@ struct AwardingOpportunity {
     /// The date until when the awarding activities take/took place
     ended_at_time: chrono::naive::NaiveDateTime,
 }
+
 /// A right, e.g. to practice a profession, take advantage of
 /// a learning opportunity or join an organisation,
 /// as a result of the acquisition of knowledge, skills,
@@ -793,6 +809,7 @@ struct Entitlement {
     /// Smaller entitlements, which when combined make up this entitlement.
     has_part: Box<Entitlement>,
 }
+
 /// The specification of a right a person has access to,
 /// typically as a result of a learning achievement.
 /// It may take the form of the right to be a member of an organisation,
@@ -835,7 +852,6 @@ struct EntitlementSpecification {
     /// An entitlement specification (e.g. a standard) of which this specification is a specialization.
     specialization_of: Box<EntitlementSpecification>,
 }
-
 
 /// An enumeration of the official languages used in the European Union,
 /// as of 2013-07-01. See https://eur-lex.europa.eu/eli/reg/1958/1(1)/2013-07-01
@@ -1069,7 +1085,6 @@ impl std::convert::TryFrom<&str> for MDRunit {
         }
     }
 }
-
 
 /// The Measurement unit authority table is a controlled vocabulary
 /// listing units of measurement with their authority codes.
@@ -1447,33 +1462,42 @@ impl std::convert::TryFrom<&str> for MDRcurrency {
 /// A Uniform Resource Identifier.
 /// Has a range of xsd:anyURI.
 struct URI(String);
+
 ///A boolean indicating true or false.
 /// Has a range of xsd:boolean.
 type IndicatorType = bool;
+
 /// A rate, number or proportion per hundred.
 /// Has a range of xsd:decimal.
 struct PercentType(f64);
+
 /// A positive integer.
 /// Has a range of xsd:positiveInteger.
 struct PositiveInteger(u64);
+
 /// A numeric value.
 /// Has a range of xsd:decimal.
 struct Numeric(f64);
+
 /// A time duration.
 /// Has a range of xsd:duration.
 struct Duration(u64);
 
 // ------- Additional Types Not In Spec -------
+
 /// The contact information of an agent.
 struct ContactPoint;
+
 /// An associated field of education from another
 /// semantic framework than the ISCED classification.
 struct EducationSubjectAssociation;
+
 /// An associated field of education from another
 /// semantic framework than the ISCED classification.
 struct EducationLevelAssociation;
+
 /// Uknown.
 struct EscoOccupationAssociation;
+
 /// Unknown.
 struct OccupationAssociation;
-
