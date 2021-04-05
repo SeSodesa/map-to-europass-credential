@@ -1,6 +1,8 @@
 /*!
 This submodule defines the Europass credential type EuropassCredential
 and the types required in the construction of its fields.
+
+See https://github.com/european-commission-europass/Europass-Learning-Model/blob/master/Credentials/Credentials_Learning_Model.md
 */
 
 use chrono;
@@ -834,9 +836,6 @@ struct EntitlementSpecification {
     specialization_of: Box<EntitlementSpecification>,
 }
 
-struct EscoOccupationAssociation;
-struct OccupationAssociation;
-
 
 /// An enumeration of the official languages used in the European Union,
 /// as of 2013-07-01. See https://eur-lex.europa.eu/eli/reg/1958/1(1)/2013-07-01
@@ -1473,3 +1472,8 @@ struct EducationSubjectAssociation;
 /// An associated field of education from another
 /// semantic framework than the ISCED classification.
 struct EducationLevelAssociation;
+/// Uknown.
+struct EscoOccupationAssociation;
+/// Unknown.
+struct OccupationAssociation;
+
