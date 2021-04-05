@@ -223,7 +223,7 @@ struct Accreditation {
     /// as assigned to it by the accrediting agent.
     identifier: Identifier,
     /// The type of accreditation.
-    accreditation_type: Code,
+    accreditation_type: AccreditationType,
     /// The title of the accreditation.
     title: Text,
     /// A description of this accreditation.
@@ -259,6 +259,29 @@ struct Accreditation {
     /// A public web document containing additional
     /// documentation describing the Accreditation Procedures and Standards
     supplementary_document: WebDocument,
+}
+
+/// This is an enumeration of the standard list of EU accreditation types.
+enum AccreditationType {
+    /// A licencing procedure applied at the level of an organisation.
+    /// Institutional Licencing implies permission for the institution to operate,
+    /// and is awarded by Public Authorities or delegates thereof.
+    InstitutionalLicense,
+    /// A quality assurance procedure applied at the level of one or several programmes.
+    /// Programme Quality Assurance leads to a QA Decision,
+    /// but does not have any legal implications.
+    /// Programme Quality Assurance may be given within the context of private QA labels.
+    ProgramQualityAssurance,
+    /// A quality assurance procedure applied at the level of an organisation.
+    /// Institutional Quality Assurance leads to a QA Decision,
+    /// but does not have any legal implications.
+    /// Institutional Quality Assurance may be provided within the context of
+    /// private QA labels.
+    InstitutionalQualityAssurance,
+    /// A licencing procedure applied at the level of one or several programmes.
+    /// Institutional Licencing implies permission for an institution to provide
+    /// a specific programme, and is awarded by Public Authorities or delegates thereof.
+    ProgramLicense,
 }
 
 /// The Europass Standard List of Credential Types is a centrally devised
