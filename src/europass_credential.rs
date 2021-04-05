@@ -618,7 +618,17 @@ struct Assessment {
 }
 /// Indicator of how well the student was graded when compared
 /// to other students.
-struct ShortenedGrading;
+struct ShortenedGrading {
+    /// The percentage of students of the same
+    /// course who got a lower grade.
+    percentage_lower: Numeric,
+    /// The percentage of students of the same
+    /// course who got exactly the same grade.
+    percentage_equal: Numeric,
+    /// The percentage of students of the same
+    /// course who got a higher grade.
+    precentage_higher: Numeric,
+}
 /// Describes a histogram of results achieved by all the students
 /// of this course instance.
 struct ResultDistribution;
