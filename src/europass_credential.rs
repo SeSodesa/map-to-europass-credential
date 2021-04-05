@@ -631,7 +631,12 @@ struct ShortenedGrading {
 }
 /// Describes a histogram of results achieved by all the students
 /// of this course instance.
-struct ResultDistribution;
+struct ResultDistribution {
+    /// Describes a single range within the histogram.
+    category: ResultCategory,
+    /// Free text description of the histogram.
+    description: Note,
+}
 /// Description of a single score or score range within
 /// a histogram of results.
 struct ResultCategory;
