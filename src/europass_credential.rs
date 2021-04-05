@@ -713,7 +713,32 @@ struct QualificationAwarded {
 /// the organisation that awarded the LearningSpecification to the individual,
 /// the country or region where the LearningSpecification was awarded,
 /// and optionally the date of awarding.
-struct AwardingProcess;
+struct AwardingProcess {
+    /// A portable and Unique Identifier of the Awarding Process.
+    id: URI,
+    /// An alternative identifier of the awarding process.
+    identifier: Identifier,
+    /// A description of the awarding process to the individual.
+    description: Text,
+    /// An additional free text note
+    /// (e.g. a comment, a remark, etc.)
+    additional_note: Text,
+    /// The assessment that provided the basis for this awarding.
+    used: Assessment,
+    /// The resulting learning achievement.
+    learning_achievement: Box<LearningAchievement>,
+    /// The awarding body that awarded the Achievement to the individual.
+    /// Only in cases of co-awarding/co-graduation,
+    /// where a qualification award is issued to an individual by two or
+    /// more organisations the cardinality is greater than 1.
+    awarding_body: Organisation,
+    /// The location where the awarding activity took place
+    /// (country/region where the qualification was awarded).
+    awarding_location: Location,
+    /// The date when the LearningSpecification was awarded.
+    /// If not specified it is undefined (“not known”).
+    awarding_date: chrono::naive::NaiveDateTime,
+}
 /// An awarding activity represents an activity related to the awarding of
 /// a LearningSpecification. It is used to specify the country or region
 /// where the LearningSpecification is awarded, the awarding body and
