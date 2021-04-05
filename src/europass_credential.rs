@@ -498,7 +498,44 @@ struct LearningActivitySpecification {
 }
 /// Any process which leads to the acquisition of knowledge,
 /// skills or responsibility and autonomy.
-struct LearningActivity;
+struct LearningActivity {
+    /// A portable and unique identifier of the learning activity.
+    id: URI,
+    /// An alternative identifier of the learning activity assigned
+    /// to the assessment by the organisation directing the activity.
+    identifier: Identifier,
+    /// The title of the learning activity.
+    title: Text,
+    /// A free text description of the learning activity.
+    description: Note,
+    /// An additional free text note about the activity.
+    additional_note: Note,
+    /// The actual workload in number of hours the learner
+    /// has spent engaged in the activity. This would include
+    /// the number of hours in class, in group work, in practicals,
+    /// as well as hours engaged in self-motivated study.
+    workload: Duration,
+    /// The date the learner started the activity
+    started_at_time: chrono::naive::NaiveDateTime,
+    /// The date the learner ended the activity
+    ended_at_time: chrono::naive::NaiveDateTime,
+    /// The organisation, or part of an organisation such as department,
+    /// faculty, which directed the learning activity.
+    directed_by: Agent,
+    /// The location where the activity took place
+    location: Location,
+    /// The specification of this learning activity.
+    specified_by: LearningActivitySpecification,
+    /// The used or taken opportunity to do this learning activity.
+    used_learning_opportunity: Box<LearningOpportunity>,
+    /// Performing this activity contributed to the acquisition
+    /// of these related learning achievements.
+    influenced: Box<Achievement>,
+    /// Smaller units of activity, which when combined make up this activity.
+    has_part: Box<LearningActivity>,
+}
+struct Achievement;
+struct LearningOpportunity;
 /// An Assessment Specification is a specification of a process establishing
 /// the extent to which a learner has attained particular knowledge,
 /// skills and competences against criteria such as learning outcomes or
