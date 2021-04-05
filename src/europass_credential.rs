@@ -704,7 +704,10 @@ struct LearningAchievement {
 /// A formal outcome of an assessment and validation process which is obtained
 /// when a competent authority determines that an individual has achieved
 /// learning outcomes to given standards.
-struct QualificationAwarded;
+struct QualificationAwarded {
+    /// The details of the awarded qualification.
+    specified_by: Qualification,
+}
 /// The process of an organisation awarding Learning Achievement to person based
 /// on a Learning Specification (e.g. a qualification). It is used to specify
 /// the organisation that awarded the LearningSpecification to the individual,
