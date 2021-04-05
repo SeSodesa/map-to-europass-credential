@@ -767,7 +767,30 @@ struct AwardingOpportunity {
 /// a learning opportunity or join an organisation,
 /// as a result of the acquisition of knowledge, skills,
 /// responsibility and/or autonomy.
-struct Entitlement;
+struct Entitlement {
+    /// A portable and identifier of the entitlement. id
+    id: URI,
+    /// An alternative identifier of the entitlement.
+    identifier: Identifier,
+    /// The title of the entitlement.
+    title: Text,
+    /// A free text description of the specific rights
+    /// the holder of the credential has acquired.
+    description: Note,
+    /// The date from which the entitlement was conferred.
+    issued_date: chrono::naive::NaiveDate,
+    /// The date until which the entitlment was conferred.
+    expiry_date: chrono::naive::NaiveDate,
+    /// An additional free text note about the entitlement.
+    additional_note: Note,
+    /// A learning achievement which gave rise to the entitlement.
+    specified_by: EntitlementSpecification,
+    /// The learning achievement (and related learning outcomes)
+    /// which gave rise to this entitlement.
+    was_derived_from: Box<LearningAchievement>,
+    /// Smaller entitlements, which when combined make up this entitlement.
+    has_part: Box<Entitlement>,
+}
 /// The specification of a right a person has access to,
 /// typically as a result of a learning achievement.
 /// It may take the form of the right to be a member of an organisation,
