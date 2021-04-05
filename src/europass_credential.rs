@@ -584,7 +584,38 @@ struct ScoringScheme;
 /// The result of a process establishing the extent to which a learner
 /// has attained particular knowledge, skills and competences against
 /// criteria such as learning outcomes or standards of competence.
-struct Assessment;
+struct Assessment {
+    /// A portable identifier of the assessment.
+    id: URI,
+    /// An alternative identifier assigned to
+    /// the assessment by the organisation grading the assessment.
+    identifier: Identifier,
+    /// The title of the assessment.
+    title: Text,
+    /// The description of the assessment.
+    description: Text,
+    /// An additional free text note about the assessment.
+    additional_note: Score,
+    /// The resulting grade of the assessment.
+    grade: Score,
+    /// Indicator of how well the student was graded
+    /// when compared to other students
+    shortened_grading: ShortenedGrading,
+    /// Describes a histogram of results achieved by
+    /// all the students of a particular learning assessment.
+    result_distribution: ResultDistribution,
+    /// Date the grade was awarded.
+    issued_date: chrono::naive::NaiveDateTime,
+    /// Method of assessment supervision and id verification.
+    id_verification: Code,
+    /// The competent body that awarded the grade.
+    assessed_by: Agent,
+    /// The specification of this assessment.
+    specified_by: AssessmentSpecification,
+    /// Smaller assessments, which when combined make up
+    /// and can influence this assessment.
+    has_part: Box<Assessment>,
+}
 /// Indicator of how well the student was graded when compared
 /// to other students.
 struct ShortenedGrading;
