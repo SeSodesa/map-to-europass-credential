@@ -796,7 +796,47 @@ struct Entitlement {
 /// It may take the form of the right to be a member of an organisation,
 /// to follow a certain learning opportunity specification,
 /// or to follow a certain career.
-struct EntitlementSpecification;
+struct EntitlementSpecification {
+    /// A portable and unique identifier of the entitlement specification.
+    id: URI,
+    /// An alternative identifier of the entitlement specification.
+    identifier: Identifier,
+    /// The title of the entitlement specification.
+    title: Text,
+    /// An alternative name of the entitlement specification.
+    alternative_label: Text,
+    /// A free text description of the entitlement specification.
+    description: Note,
+    /// An additional free text note about the entitlement specification.
+    additional_not: Note,
+    /// The homepage (a public web document) of the entitlement specification.
+    home_page: WebDocument,
+    /// A public web document containing additional documentation about the entitlement specification.
+    supplementary_document: WebDocument,
+    /// A credential-holder may be entitled to membership of an organisation or professional association; to access a learning opportunity; or to perform a specific employment
+    entitlement_type: Code,
+    /// The status of the entitlement: an entitlement may be prospective, i.e. awarding the right to apply for the entitlement; or actual, i.e. granting the entitlement.
+    status: Code,
+    /// The organisation which acknowledges the entitlement (i.e. the organisation offering the learning opportunity, membership or employment opportunity)
+    limit_organisation: Organisation,
+    /// The jurisdiction for which the entitlement is valid (the region or country).
+    limit_jurisdiction: Code,
+    /// The An ESCO Occupation or Occupational class which the individual may access through the entitlement.
+    limit_occupation: EscoOccupationAssociation,
+    /// An Occupation or Occupational Category
+    limit_national_occupation: OccupationAssociation,
+    /// A learning specification this entitlement specification
+    /// may be derived from.
+    may_result_from: Box<LearningSpecification>,
+    /// Smaller entitlement specifications, which when combined make up this entitlement specification.
+    entitlement_specification: Box<EntitlementSpecification>,
+    /// An entitlement specification (e.g. a standard) of which this specification is a specialization.
+    specialization_of: Box<EntitlementSpecification>,
+}
+
+struct EscoOccupationAssociation;
+struct OccupationAssociation;
+
 
 /// An enumeration of the official languages used in the European Union,
 /// as of 2013-07-01. See https://eur-lex.europa.eu/eli/reg/1958/1(1)/2013-07-01
