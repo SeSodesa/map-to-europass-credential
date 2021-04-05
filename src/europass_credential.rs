@@ -68,7 +68,7 @@ struct EuropassCredential {
 /// An abstract entity that is able to carry out actions.
 struct Agent {
     /// A portable identifier of the agent.
-    id: String,
+    id: URI,
     /// A formally issued identifier of the agent.
     identifier: Identifier,
     /// The Type of an Agent as described in a controlled vocabulary.
@@ -86,7 +86,7 @@ struct Agent {
 /// A concrete human instance of an agent.
 struct Person {
     /// The unique and portable identifier of the person.
-    id: String,
+    id: URI,
     /// The "primary" national identifier of the person.
     national_id: LegalIdentifier,
     /// An (optional) alternative formally-issued identifier for the person,
