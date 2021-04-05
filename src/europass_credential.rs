@@ -540,7 +540,47 @@ struct LearningOpportunity;
 /// the extent to which a learner has attained particular knowledge,
 /// skills and competences against criteria such as learning outcomes or
 /// standards of competence.
-struct AssessmentSpecification;
+struct AssessmentSpecification {
+    /// A portable and Unique Identifier of the Assessment Specification
+    id: URI,
+    /// An alternative identifier of the assessment specification,
+    /// as assigned to it by the organisation who designed the specification.
+    identifier: Identifier,
+    /// The title of the assessment specification.
+    title: Text,
+    /// An alternative name of the assessment specification.
+    alternative_label: Text,
+    /// A free text description of the assessment specification.
+    description: Note,
+    /// An additional free text note about the assessment specification.
+    additional_note: Note,
+    /// The homepage (a public web document) describing
+    /// the details of the assessment specification
+    home_page: WebDocument,
+    /// A public web document containing additional documentation
+    /// about the assessment specification.
+    supplementary_document: WebDocument,
+    /// The type of assessment.
+    assessment_type: Code,
+    /// The language(s) of assessment used.
+    language: Code,
+    /// The mode of learning and or assessment.
+    mode: Code,
+    /// A description of the specification of which
+    /// learning outcomes are or have been proven.
+    grading_scheme: ScoringScheme,
+    /// The learning achievement (and related learning outcomes)
+    /// this assessment is designed to test.
+    proves: Box<LearningSpecification>,
+    /// A assessment specification can be composed of other "narrower"
+    /// assessment specifications which when combined make up
+    /// this assessment specification.
+    has_part: Box<AssessmentSpecification>,
+    /// An assessment specification (e.g. a standard) of which
+    /// this specification is a specialisation.
+    specialisation_of: Box<AssessmentSpecification>,
+}
+struct ScoringScheme;
 /// The result of a process establishing the extent to which a learner
 /// has attained particular knowledge, skills and competences against
 /// criteria such as learning outcomes or standards of competence.
