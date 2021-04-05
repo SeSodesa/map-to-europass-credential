@@ -654,7 +654,20 @@ struct ResultCategory {
     count: PositiveInteger,
 }
 /// A set of criteria that measures varying levels of achievement.
-struct GradingScheme;
+struct GradingScheme {
+    /// A portable and unique identifier of the Grading Scheme.
+    id: URI,
+    /// An alternative identifier of the Grading Scheme
+    /// assigned to it by the organisation administering the scheme.
+    identifier: Identifier,
+    /// The title of the scoring scheme.
+    title: Text,
+    /// A free text description of the scoring scheme.
+    description: Note,
+    /// A public web document containing additional
+    /// documentation about the scoring system.
+    supplementary_document: WebDocument,
+}
 /// The acquisition of knowledge, skills or responsibility and autonomy.
 /// A recognised and/or awarded set of learning outcomes of an individual.
 struct LearningAchievement;
