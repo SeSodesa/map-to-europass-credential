@@ -894,7 +894,7 @@ struct EntitlementSpecification {
     /// A credential-holder may be entitled to membership of an organisation or professional association; to access a learning opportunity; or to perform a specific employment
     entitlement_type: Code,
     /// The status of the entitlement: an entitlement may be prospective, i.e. awarding the right to apply for the entitlement; or actual, i.e. granting the entitlement.
-    status: Code,
+    status: EntitlementStatus,
     /// The organisation which acknowledges the entitlement (i.e. the organisation offering the learning opportunity, membership or employment opportunity)
     limit_organisation: Organisation,
     /// The jurisdiction for which the entitlement is valid (the region or country).
@@ -910,6 +910,17 @@ struct EntitlementSpecification {
     entitlement_specification: Box<EntitlementSpecification>,
     /// An entitlement specification (e.g. a standard) of which this specification is a specialization.
     specialization_of: Box<EntitlementSpecification>,
+}
+
+/// An enumeration of standard Europass entitlement statuses.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/entitlement-status/25831c2
+enum EntitlementStatus {
+    /// A prospective entitlement awards the right to apply for a (specific or class of)
+    /// learning opportunity, employment or membership.
+    Prospective,
+    /// An actual entitlement grants the right to pursue a learning opportunity,
+    /// employment or membership automatically.
+    Actual,
 }
 
 /// An enumeration of the official languages used in the European Union,
