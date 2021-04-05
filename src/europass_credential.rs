@@ -134,6 +134,55 @@ struct Person {
     entitled_to: Entitlement,
 }
 
+/// A concrete instance of an Agent.
+/// A legal person / registered organisation.
+struct Organisation {
+    /// The unique and portable identifier of the organisation.
+    id: URI,
+    /// Another formally-issued identifier for the organisation.
+    identifier: Identifier,
+    /// The official identification number of the organisation,
+    /// as awarded by the relevant national authority.
+    ///
+    /// See chapter 5.1.4 in Draft ETSI EN 319 412-1 V1.4.2:
+    /// https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.04.02_20/en_31941201v010402a.pdf
+    eidas_legal_identifier: Identifier,
+    /// The legal identifier of an organization.
+    /// The identifier given to a registered organization by the authority
+    /// with which it is registered. The legal status of
+    /// a registered organization is conferred on it by an authority
+    /// within a given jurisdiction. The Legal Identifier is therefore
+    /// a fundamental relationship between an organization and the authority
+    /// with which it is registered.
+    registration: Identifier,
+    /// The Value-Added Tax ID.
+    vat_identifier: Identifier,
+    /// Fiscal ID of the organisation.
+    tax_identifier: Identifier,
+    /// The primary name of the organisation.
+    preferred_name: Text,
+    /// An (optional) alternative name of the organisation as typically
+    /// used in documents, including credentials.
+    alternative_name: Text,
+    /// A homepage of the organisation.
+    home_page: WebDocument,
+    /// The legally registered site of the organisation.
+    has_location: Location,
+    /// Accreditation Records associated with the organisation.
+    /// More information about the accreditation database is available here.
+    has_accreditation: Accreditation,
+    /// A smaller organisation of which forms part of this organisation,
+    /// e.g. a Department within a larger Organisation.
+    has_unit: Box<Organisation>,
+    /// Indicates a larger Organisation of which this Unit is a part of,
+    /// e.g. the Organisation within which a Department operates.
+    unit_of: Box<Organisation>,
+    /// The logo of the organisation.
+    logo: ImageObject,
+}
+
+struct Accreditation;
+
 /// The Europass Standard List of Credential Types is a centrally devised
 /// list of customised credential profiles that issuing organisations can
 /// choose from to describe their credentials that correspond to that profile.
