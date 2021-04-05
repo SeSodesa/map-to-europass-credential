@@ -453,7 +453,49 @@ struct LearningOutcome {
 }
 /// The specification of a process which leads to the acquisition of knowledge,
 /// skills or responsibility and autonomy.
-struct LearningActivitySpecification;
+struct LearningActivitySpecification {
+    /// A portable and unique identifier of the learning activity specification.
+    id: URI,
+    /// An alternative identifier of the Learning Activity,
+    /// as assigned to it by the organisation who designed the specification.
+    identifier: Identifier,
+    /// The title of the learning activity specification.
+    title: Text,
+    /// An alternative name of the activity specification.
+    alternative_label: Text,
+    /// A free text description of the learning activity specification.
+    description: Note,
+    /// An additional free text note about
+    /// the learning activity specification.
+    additional_note: Note,
+    /// Webpage describing the activity specification.
+    home_page: WebDocument,
+    /// A public web document containing additional
+    /// documentation about the learning activity specification.
+    supplementary_document: WebDocument,
+    /// The type of activity.
+    learning_activity_type: Code,
+    /// The expected workload indicated in the estimated
+    /// number of hours the learner is expected to spend
+    /// engaged in the activity. This would include
+    /// the notional number of hours in class, in group work,
+    /// in practicals, as well as hours engaged in self-motivated study.
+    workload: Duration,
+    /// The instruction language(s) used.
+    language: Code,
+    /// The mode of learning and or assessment.
+    mode: Code,
+    /// The expected learning outcomes this learning activity
+    /// specification can lead or contribute to.
+    teaches: Box<LearningSpecification>,
+    /// A learning activity specification can be composed of
+    /// smaller learning specifications, which when combined
+    /// make up this learning specification.
+    has_part: Box<LearningActivitySpecification>,
+    /// An activity specification (e.g. a standard)
+    /// of which this specification is a specialisation.
+    specialisation_of: Box<LearningActivitySpecification>,
+}
 /// Any process which leads to the acquisition of knowledge,
 /// skills or responsibility and autonomy.
 struct LearningActivity;
