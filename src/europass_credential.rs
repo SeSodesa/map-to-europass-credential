@@ -39,13 +39,13 @@ struct EuropassCredential {
     /// The type of this credential.
     /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2
     /// for details.
-    credential_type: EuropassCredentialType,
+    credential_type: Code,
     /// The full official title of the issued credential
     /// (maximum 50 characters).
-    title: String,
+    title: Text,
     /// A summary of the claim or group of claims being
     /// made about a person (maximum 140 words).
-    description: String,
+    description: Note,
     /// The organisaton that issued the credential and
     /// sealed it with their digital e-seal.
     issuer: String,
@@ -63,6 +63,75 @@ struct EuropassCredential {
     /// Smaller sub-credentials (micro-credentials),
     /// that make up this larger credential when combined.
     contains: Box<EuropassCredential>,
+}
+
+/// An abstract entity that is able to carry out actions.
+struct Agent {
+    /// A portable identifier of the agent.
+    id: String,
+    /// A formally issued identifier of the agent.
+    identifier: Identifier,
+    /// The Type of an Agent as described in a controlled vocabulary.
+    agent_type: Code,
+    /// The primary name of the agent.
+    preferred_name: Text,
+    /// An agent may have any number of alternative or informal names.
+    alternative_name: Text,
+    /// An additional free text note about the agent.
+    note: Note,
+    /// The contact information of an agent.
+    contact_point: ContactPoint,
+}
+
+/// A concrete human instance of an agent.
+struct Person {
+    /// The unique and portable identifier of the person.
+    id: String,
+    /// The "primary" national identifier of the person.
+    national_id: LegalIdentifier,
+    /// An (optional) alternative formally-issued identifier for the person,
+    /// e.g. social security number, student ID card number, to club membership, etc.
+    identifier: Identifier,
+    /// The complete name of the person as one string.
+    full_name: Text,
+    /// The given name(s) of the person.
+    given_names: Text,
+    /// The family name of the person.
+    family_name: Text,
+    /// The name of the person at birth.
+    /// Birth names tend to be persistent and for this reason
+    /// they are recorded by some public sector information systems.
+    /// There is no granularity for birth name - the full name should
+    /// be recorded in a single field.
+    birth_name: Text,
+    /// Patronymic names are important in some countries.
+    /// Iceland does not have a concept of 'family name' in the way
+    /// that many other European countries do, for example,
+    /// Erik Magnusson and Erika Magnusdottir are siblings,
+    /// both offspring of Mangnus, irrespective of his patronymic name.
+    /// In Bulgaria and Russia, patronymic names are in every day usage,
+    /// for example, the Sergeyevich in 'Mikhail Sergeyevich Gorbachev.'
+    patronymic_name: Text,
+    /// The birth date of the person.
+    date_of_birth: chrono::naive::NaiveDate,
+    /// The place of birth of the person.
+    place_of_birth: Location,
+    /// The gender of the person.
+    gender: Code,
+    /// The country (or countries) that conferred citizenship
+    /// rights on the person.
+    citizenship_country: Code,
+    /// A location related to a Person.
+    /// For example a person's home or residence location,
+    /// a person's work place location,
+    /// site location of an organisation, etc.
+    has_location: Location,
+    /// A learning activity that a person participated in or attended.
+    performed: LearningActivity,
+    /// An achievement of the person.
+    achieved: LearningAchievement,
+    /// The entitlement of the person.
+    entitled_to: Entitlement,
 }
 
 /// The Europass Standard List of Credential Types is a centrally devised
@@ -86,6 +155,218 @@ enum EuropassCredentialType {
     /// This is the default Europass credential type.
     Generic,
 }
+
+
+/// The types of attachments that might come with a Europass credential.
+enum EuropassAttachment {
+    /// Portable Document Format
+    PDF,
+    /// Portable Network Graphics
+    PNG,
+    /// JPEG
+    JPEG,
+}
+
+/// The cryptographic proof that can be used to detect tampering and
+/// verify the authorship of a credential or presentation.
+struct Proof {
+    /// The code indicating how to display the summary view of the credential.
+    display_code: String,
+    /// The background image of the credential.
+    background: ImageObject
+}
+
+/// A description of what a person may learn using the opportunity,
+/// expressed as learning outcomes. A specification of learning.
+struct LearningSpecification {
+    /// A portable and unique identifier of the learning specification.
+    id: URI,
+    /// An alternative identifier of the learning specification,
+    /// as assigned to it by the organisation who designed the specification.
+    identifier: Identifier,
+    /// The type of learning opportunity.
+    learning_opportunity_type: Code,
+    /// The title of the learning specification.
+    title: Text,
+    /// An alternative name of the learning specification.
+    alternative_labe: Text,
+    /// Short and abstract description about the learning specification.
+    definition: Note,
+    /// The full learning outcome description of the learning specification.
+    learning_outcome_description: Note,
+    /// An additional free text note about the learning specification.
+    addtional_note: Note,
+    /// The homepage (a public web document) of the learning specification.
+    home_page: WebDocument,
+    /// A public web document containing additional documentation
+    /// about the learning specification.
+    supplemenary_document: WebDocument,
+    /// Thematic Area according to the ISCED-F 2013 Classification
+    iscedfc_code: Code,
+    /// An associated field of education from another
+    /// semantic framework than the ISCED classification.
+    education_subject: EducationSubjectAssociation,
+    /// The estimated number of hours the learner is expected to spend
+    /// engaged in learning to earn the award. This would include
+    /// the notional number of hours in class, in group work, in practicals,
+    /// as well as hours engaged in self-motivated study.
+    volume_of_learning: Duration,
+    /// The credit points assigned to the learning specification,
+    /// following the ECTS credit system.
+    ects_credit_points: NumericScore,
+    /// The credit points assigned to the learning specification,
+    /// following an alternative educational credit system.
+    credit_points: NumericScore,
+    /// An associated level of education within a semantic framework
+    /// describing education levels.
+    education_level: EducationLevelAssociation,
+    /// The instruction and/or assessment language(s) used.
+    language: Code,
+    /// The mode of learning and or assessment.
+    mode: Code,
+    /// The type of learning setting (formal, non-formal).
+    learning_setting: Code,
+    /// The maximum duration (in months) that a person may use
+    /// to complete the learning opportunity.
+    maximum_duration: Duration,
+    /// A specific target group or category for which this specification is designed.
+    target_group: Code,
+    /// Specific entry requirements or prerequisites of individuals
+    /// for which this specification is designed to start this learning opportunity.
+    entry_requirements_note: Note,
+    /// An individual (expected) learning outcome of the learning specification.
+    learning_outcome: LearningOutcome,
+    /// Activities which a person can perform to acquire
+    /// the expected learning outcomes.
+    learning_activity_specification: LearningActivitySpecification,
+    /// Assessments a person can undergo to prove
+    /// the acquisition of the learning outcomes
+    assessment_sppecification: AssessmentSpecification,
+    /// Rights, such as which the person may acquire as
+    /// a result of acquiring the learning outcomes.
+    entitlement_specification: EntitlementSpecification,
+    /// Refers to an activity related to the awarding of
+    /// the learning specification, such as the country or region
+    /// where the qualifi-cation is awarded, the awarding body and
+    /// optionally the awarding period now or in the past.
+    awarding_opportunity: AwardingOpportunity,
+    /// A learning specification can be composed of other "narrower"
+    /// learning specifications which when combined make up this
+    /// learning specification.
+    has_part: Box<LearningSpecification>,
+    /// A learning specification (e.g. a standard) of which
+    /// this specification is a specialisation.
+    ///
+    /// TODO: To be imlemented at a later stage.
+    specialisation_of: Box<LearningSpecification>,
+}
+
+/// A specification of an assessment and validation process which is
+/// obtained when a competent authority determines that an individual
+/// has achieved learning outcomes to given standards.
+struct Qualification;
+/// A statement regarding what a learner knows, understands and is able
+/// to do on completion of a learning process, which are defined in terms
+/// of knowledge, skills and responsibility and autonomy.
+struct LearningOutcome;
+/// The specification of a process which leads to the acquisition of knowledge,
+/// skills or responsibility and autonomy.
+struct LearningActivitySpecification;
+/// Any process which leads to the acquisition of knowledge,
+/// skills or responsibility and autonomy.
+struct LearningActivity;
+/// An Assessment Specification is a specification of a process establishing
+/// the extent to which a learner has attained particular knowledge,
+/// skills and competences against criteria such as learning outcomes or
+/// standards of competence.
+struct AssessmentSpecification;
+/// The result of a process establishing the extent to which a learner
+/// has attained particular knowledge, skills and competences against
+/// criteria such as learning outcomes or standards of competence.
+struct Assessment;
+/// Indicator of how well the student was graded when compared
+/// to other students.
+struct ShortenedGrading;
+/// Describes a histogram of results achieved by all the students
+/// of this course instance.
+struct ResultDistribution;
+/// Description of a single score or score range within
+/// a histogram of results.
+struct ResultCategory;
+/// A set of criteria that measures varying levels of achievement.
+struct GradingScheme;
+/// The acquisition of knowledge, skills or responsibility and autonomy.
+/// A recognised and/or awarded set of learning outcomes of an individual.
+struct LearningAchievement;
+/// A formal outcome of an assessment and validation process which is obtained
+/// when a competent authority determines that an individual has achieved
+/// learning outcomes to given standards.
+struct QualificationAwarded;
+/// The process of an organisation awarding Learning Achievement to person based
+/// on a Learning Specification (e.g. a qualification). It is used to specify
+/// the organisation that awarded the LearningSpecification to the individual,
+/// the country or region where the LearningSpecification was awarded,
+/// and optionally the date of awarding.
+struct AwardingProcess;
+/// An awarding activity represents an activity related to the awarding of
+/// a LearningSpecification. It is used to specify the country or region
+/// where the LearningSpecification is awarded, the awarding body and
+/// optionally the awarding period now or in the past.
+struct AwardingOpportunity;
+/// A right, e.g. to practice a profession, take advantage of
+/// a learning opportunity or join an organisation,
+/// as a result of the acquisition of knowledge, skills,
+/// responsibility and/or autonomy.
+struct Entitlement;
+/// The specification of a right a person has access to,
+/// typically as a result of a learning achievement.
+/// It may take the form of the right to be a member of an organisation,
+/// to follow a certain learning opportunity specification,
+/// or to follow a certain career.
+struct EntitlementSpecification;
+
+/// An enumeration of the official languages used in the European Union,
+/// as of 2013-07-01. See https://eur-lex.europa.eu/eli/reg/1958/1(1)/2013-07-01
+/// for details.
+enum EuropeanLanguage {
+    Bulgarian,
+    Croatian,
+    Czech,
+    Danish,
+    Dutch,
+    English,
+    Estonian,
+    Finnish,
+    French,
+    German,
+    Greek,
+    Hungarian,
+    Irish,
+    Italian,
+    Latvian,
+    Lithuanian,
+    Maltese,
+    Polish,
+    Portugese,
+    Romanian,
+    Slovak,
+    Slovene,
+    Spanish,
+    Swedish
+}
+
+// ------- Media Classes -------
+struct InteractiveWebResource;
+struct Phone;
+struct MailBox;
+struct Address;
+struct Location;
+struct WebDocument;
+struct MediaObject;
+struct ImageObject;
+
+// ------- Association Classes -------
+struct AssociationObject;
 
 /// A character string used to identify a resource.
 /// An identifier is a character string used to uniquely identify
@@ -649,55 +930,33 @@ impl std::convert::TryFrom<&str> for MDRcurrency {
     }
 }
 
-/// The types of attachments that might come with a Europass credential.
-enum EuropassAttachment {
-    /// Portable Document Format
-    PDF,
-    /// Portable Network Graphics
-    PNG,
-    /// JPEG
-    JPEG,
-}
+// ------- Primitive Types -------
 
-/// The cryptographic proof that can be used to detect tampering and
-/// verify the authorship of a credential or presentation.
-struct Proof {
-    /// The code indicating how to display the summary view of the credential.
-    display_code: String,
-    /// The background image of the credential.
-    background: ImageObject
-}
+/// A Uniform Resource Identifier.
+/// Has a range of xsd:anyURI.
+struct URI(String);
+///A boolean indicating true or false.
+/// Has a range of xsd:boolean.
+type IndicatorType = bool;
+/// A rate, number or proportion per hundred.
+/// Has a range of xsd:decimal.
+struct PercentType(f64);
+/// A positive integer.
+/// Has a range of xsd:positiveInteger.
+struct PositiveInteger(u64);
+/// A numeric value.
+/// Has a range of xsd:decimal.
+struct Numeric(f64);
+/// A time duration.
+/// Has a range of xsd:duration.
+struct Duration(u64);
 
-/// The background image of the credential,
-/// embedded in its cryptographic proof.
-struct ImageObject;
-
-/// An enumeration of the official languages used in the European Union,
-/// as of 2013-07-01. See https://eur-lex.europa.eu/eli/reg/1958/1(1)/2013-07-01
-/// for details.
-enum EuropeanLanguage {
-    Bulgarian,
-    Croatian,
-    Czech,
-    Danish,
-    Dutch,
-    English,
-    Estonian,
-    Finnish,
-    French,
-    German,
-    Greek,
-    Hungarian,
-    Irish,
-    Italian,
-    Latvian,
-    Lithuanian,
-    Maltese,
-    Polish,
-    Portugese,
-    Romanian,
-    Slovak,
-    Slovene,
-    Spanish,
-    Swedish
-}
+// ------- Additional Types Not In Spec -------
+/// The contact information of an agent.
+struct ContactPoint;
+/// An associated field of education from another
+/// semantic framework than the ISCED classification.
+struct EducationSubjectAssociation;
+/// An associated field of education from another
+/// semantic framework than the ISCED classification.
+struct EducationLevelAssociation;
