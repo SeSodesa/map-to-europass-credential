@@ -14,7 +14,7 @@ use chrono;
 struct VerifiableCredential {
     /// A unique portable identifier of the credential.
     /// Has to be a valid URI.
-    id: Identifier,
+    id: URI,
     /// The issuance date of the credential.
     issuance_date: chrono::naive::NaiveDateTime,
     /// The date and time the credential was digitally signed.
