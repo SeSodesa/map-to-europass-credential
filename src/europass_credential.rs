@@ -351,9 +351,17 @@ struct VerificationCheck {
     /// The credential subject of this verififcation check.
     subject: EuropassCredential,
     /// The result of the check.
-    status: Code,
+    status: VerificationStatus,
     /// A free text description of the check and the result.
     description: Note,
+}
+
+/// An enumeration of the standard Europass verification statuses.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
+enum VerificationStatus {
+    Gray,
+    Green,
+    Red,
 }
 
 /// The types of attachments that might come with a Europass credential.
