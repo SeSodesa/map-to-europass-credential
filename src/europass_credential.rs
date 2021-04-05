@@ -13,6 +13,7 @@ use chrono;
 /// which can also be cryptographically verified.
 struct VerifiableCredential {
     /// A unique portable identifier of the credential.
+    /// Has to be a valid URI.
     id: Identifier,
     /// The issuance date of the credential.
     issuance_date: chrono::naive::NaiveDate,
