@@ -69,6 +69,15 @@ pub enum CommunicationChannelUsageType {
     Mobile,
 }
 
+/// Europass Vocabularies consist of a set of simplified, re-usable and extensible data models that capture the fundamental characteristics entities.
+/// They are primarily used in the Europass CV template, Europass Digital Credentials and Europass Learning Opportunities. Any entity wishing to be
+/// interoperable with these services can benefit by using the models.
+///
+/// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/encoding
+pub enum ContentEncodingTypes {
+    Base64,
+}
+
 /// An enumeration of the standard Europass credential types.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2.
 pub enum CredentialType {
