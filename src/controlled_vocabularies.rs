@@ -1,7 +1,7 @@
 /*!
-This submodule defines the controlled vocabularies published in
-the Named Authority Lists of Europass. These refer to different
-types of classifications of the objects defined in the Europass learning Model.
+This submodule defines the Rust representation of the controlled vocabularies
+published in the Named Authority Lists of Europass. These refer to different
+types of classifications of the objects defined in the Europass Learning Model.
 
 See https://europa.eu/europass/en/europass-digital-credentials-interoperability.
 */
