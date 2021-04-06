@@ -1,6 +1,8 @@
 /*!
 This submodule defines the SISU attainment type `SISUAttainment`.
 It also contains the types of the fields of `SISUAttainment`.
+These are constructed from JSON requests returned from
+the [SISU Swagger UI](https://sis-tuni.funidata.fi/ori/swagger-ui.html) with serde.
 */
 
 use serde::{Serialize, Deserialize};
