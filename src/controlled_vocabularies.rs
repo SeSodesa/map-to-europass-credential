@@ -192,6 +192,31 @@ pub enum ModeOfLearningType {
     ResearchLabBased,
 }
 
+/// The Europass Standard List of Target Groups provides a custom vocabulary to describe groups of learners that a learning opportunity, and corresponding credential, is tailored and/or best suited for.
+/// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/target-group
+pub enum TargetGroup {
+    HighAchievers,
+    NonNativeSpeakers,
+    RequiringEmploymentRetraining,
+    InTertiaryEducationEQF6,
+    CompletedPrimaryEducation,
+    InCompulsoryEducation,
+    CompletedTertiaryEducationEQF7,
+    InPrimaryEducation,
+    WorkedLessThan3Years,
+    CompletedTertiaryEducationEQF8,
+    CompletedCompulsoryEducation,
+    InTertiaryEducationEQF7,
+    InTertiaryEducationEQF8,
+    Migrants,
+    Worked3to10Years,
+    WorkedOver10Years,
+    WithLearningDisability,
+    NativeSpeakers,
+    CompletedTertiaryEducationEQF6,
+    LowAchievers,
+}
+
 /// An enumeration of the standard Europass verification statuses.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
 pub enum VerificationStatus {
