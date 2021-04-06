@@ -900,7 +900,7 @@ struct EntitlementSpecification {
     /// A public web document containing additional documentation about the entitlement specification.
     supplementary_document: WebDocument,
     /// A credential-holder may be entitled to membership of an organisation or professional association; to access a learning opportunity; or to perform a specific employment
-    entitlement_type: Code,
+    entitlement_type: EntitlementType,
     /// The status of the entitlement: an entitlement may be prospective, i.e. awarding the right to apply for the entitlement; or actual, i.e. granting the entitlement.
     status: EntitlementStatus,
     /// The organisation which acknowledges the entitlement (i.e. the organisation offering the learning opportunity, membership or employment opportunity)
@@ -929,6 +929,14 @@ enum EntitlementStatus {
     /// An actual entitlement grants the right to pursue a learning opportunity,
     /// employment or membership automatically.
     Actual,
+}
+
+/// An enumeration of standard Europass entitlement types.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/entitlement/25831c2
+enum EntitlementType {
+    Occupation,
+    LearningOpportunity,
+    Membership
 }
 
 /// An enumeration of the official languages used in the European Union,
