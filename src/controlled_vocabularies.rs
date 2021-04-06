@@ -159,8 +159,11 @@ pub enum LearningOpportunityType {
 ///  The Europass Standard List of Learning Schedule Types allows, in a standardised way, the indication of the intensity of learning, from light part time to full time engagement.
 ///  See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-schedule/25831c2
 pub enum LearningScheduleType {
+    /// Part time light (less than 8 hours)
     PartTimeLight,
+    /// Full time (more then 30 hours)
     FullTime,
+    /// Part time intensive (8 to 30 hours)
     PartTimeIntensive,
 }
 
