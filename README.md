@@ -1,10 +1,10 @@
 # ↦ Europass Credential
 
-This Rust library defines a mapping between University-specific accreditations
+This Rust library defines a mapping between university-specific accreditations
 and Europass credentials. The Europass API accepts
 [XML documents](https://github.com/european-commission-europass/Europass-Learning-Model/tree/master/Credentials) as input.
 The mapping therefore needs to perform a data → XML transformation.
-The fields of University-specific accreditations are also
+The fields of university-specific attainments are also
 unlikely to have a one-to-one mapping between the
 [Europass Credential XML Model](https://github.com/european-commission-europass/Europass-Learning-Model/blob/master/Credentials/Credentials_Learning_Model.md)
 fields, so this transformation needs to be performed as well.
