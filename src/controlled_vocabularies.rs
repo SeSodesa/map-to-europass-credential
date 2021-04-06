@@ -6,7 +6,6 @@ types of classifications of the objects defined in the Europass Learning Model.
 See https://europa.eu/europass/en/europass-digital-credentials-interoperability.
 */
 
-
 /// This is an enumeration of the standard list of EU accreditation types.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/accreditation/25831c2.
 pub enum AccreditationType {
