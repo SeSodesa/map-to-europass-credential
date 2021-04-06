@@ -16,3 +16,4 @@ mod sisu_attainment;
 mod europass_learning_model;
 mod european_qualifications_framework;
 mod national_qualification_frameworks;
+mod controlled_vocabularies;
