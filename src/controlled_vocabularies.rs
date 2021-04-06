@@ -167,6 +167,15 @@ pub enum LearningScheduleType {
     PartTimeIntensive,
 }
 
+/// The Europass Standard List of Learning Setting Types provides terms to distinguish between formal learning taking place in a more organised and structured environment,
+/// and non-formal learning that is more flexible and self-paced, however still involves some form of learning support.
+///
+/// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/learning-setting
+pub enum LearningSettingType {
+    FormalLearning,
+    NonFormalLearning,
+}
+
 /// An enumeration of the standard Europass verification statuses.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
 pub enum VerificationStatus {
