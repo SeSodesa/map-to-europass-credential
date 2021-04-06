@@ -177,7 +177,7 @@ pub enum LearningSettingType {
 }
 
 /// This refers to the `VerificationType` in the documentation.
-/// Therefore this type is provided simply as in indirect means of accessing
+/// Therefore this type is provided simply as an indirect means of accessing
 /// an instance of `VerificationType`.
 pub struct SupervisionAndVerificationType (VerificationType);
 
