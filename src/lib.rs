@@ -28,12 +28,12 @@ mod european_qualifications_framework;
 mod national_qualification_frameworks;
 mod controlled_vocabularies;
 
-use europass_learning_model::VerifiableCredential;
+use europass_learning_model::EuropassCredential;
 
 /// Types (university-specific attainments) implementing this trait know
 /// how to convert themselves into a Europass credential.
 pub trait ToEuropassCredential {
     /// This function performs a conversion of a given `attainment`
     /// into a `crate::europass_learning_model::EuroPassCredential`.
-    fn to_europass_credential(attainment: Self) -> VerifiableCredential;
+    fn to_europass_credential(attainment: Self) -> EuropassCredential;
 }
