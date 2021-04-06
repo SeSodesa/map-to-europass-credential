@@ -35,5 +35,5 @@ use europass_learning_model::EuropassCredential;
 pub trait ToEuropassCredential {
     /// This function performs a conversion of a given `attainment`
     /// into a `crate::europass_learning_model::EuroPassCredential`.
-    fn to_europass_credential<T>(attainment: T) -> EuropassCredential;
+    fn to_europass_credential(attainment: Self) -> EuropassCredential;
 }
