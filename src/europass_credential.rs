@@ -6,6 +6,7 @@ See https://github.com/european-commission-europass/Europass-Learning-Model/blob
 */
 
 use chrono;
+use crate::national_qualification_frameworks as nqf;
 
 /// A set of one or more claims made by an issuer.
 /// A credential is a set of one or more claims made by the same entity.
@@ -517,7 +518,7 @@ struct Qualification {
     eqf_level: EQFLevel,
     /// The qualification level as specified by
     /// a National Qualification Framework.
-    nqf_level: Code,
+    nqf_level: nqf::NQF,
     /// The accreditation of a qualification.
     has_accreditation: Box<Accreditation>,
 }

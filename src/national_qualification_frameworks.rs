@@ -11,7 +11,7 @@ for a list of links to relevant documents and details.
 /// The root of the shallow national qualification framework tree.
 /// Lists the nations that have provided their NQFs for review,
 /// and provides access to them, when used as a member of a struct.
-enum NQF {
+pub enum NQF {
     Austria(AustriaNQF),
     BosniaAndHerzegovina(BosniaAndHerzegovinaNQF),
     Bulgaria(BulgariaNQF),
