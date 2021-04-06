@@ -50,6 +50,16 @@ pub enum AssessmentType {
     ArtefactAssessment,
 }
 
+/// The Europass Standard List of Communication Channel Types provides a list of online information transmission media categories.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/com-channel/25831c2
+pub enum CommunicationChannelType {
+    Post,
+    Email,
+    MobilePhone,
+    Fax,
+    Web,
+}
+
 /// An enumeration of the standard Europass credential types.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2.
 pub enum CredentialType {
