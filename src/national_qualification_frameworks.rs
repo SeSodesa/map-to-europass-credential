@@ -12,42 +12,51 @@ for a list of links to relevant documents and details.
 /// Lists the nations that have provided their NQFs for review,
 /// and provides access to them, when used as a member of a struct.
 enum NQF {
-    Austria,
-    BosniaAndHerzegovina,
-    Bulgaria,
-    Croatia,
-    Cyprus,
-    CzechRepublic,
-    Denmark,
-    Germany,
-    Estonia,
+    Austria(AustriaNQF),
+    BosniaAndHerzegovina(BosniaAndHerzegovinaNQF),
+    Bulgaria(BulgariaNQF),
+    Croatia(CroatiaNQF),
+    Cyprus(CyprusNQF),
+    CzechRepublic(CzechRepublicNQF),
+    Denmark(DenmarkNQF),
+    Germany(GermanyNQF),
+    Estonia(EstoniaNQF),
     Finland(FinlandNQF),
-    France,
-    Greece,
-    Hungary,
-    Iceland,
-    Ireland,
-    Italy,
-    Latvia,
-    Liechtenstein,
-    Lithuania,
-    Luxembourg,
-    NorthMacedonia,
-    Malta,
-    Montenegro,
-    Netherlands,
-    Norway,
-    Poland,
-    Portugal,
-    Romania,
-    Serbia,
-    Slovakia,
-    Slovenia,
-    Sweden,
-    Switzerland,
-    Turkey,
+    France(FranceNQF),
+    Greece(GreeceNQF),
+    Hungary(HungaryNQF),
+    Iceland(IcelandNQF),
+    Ireland(IrelandNQF),
+    Italy(ItalyNQF),
+    Latvia(LatviaNQF),
+    Liechtenstein(LiechtensteinNQF),
+    Lithuania(LithuaniaNQF),
+    Luxembourg(LuxembourgNQF),
+    NorthMacedonia(NorthMacedoniaNQF),
+    Malta(MaltaNQF),
+    Montenegro(MontenegroNQF),
+    Netherlands(NetherlandsNQF),
+    Norway(NorwayNQF),
+    Poland(PolandNQF),
+    Portugal(PortugalNQF),
+    Romania(RomaniaNQF),
+    Serbia(SerbiaNQF),
+    Slovakia(SlovakiaNQF),
+    Slovenia(SloveniaNQF),
+    Sweden(SwedenNQF),
+    Switzerland(SwitzerlandNQF),
+    Turkey(TurkeyNQF),
 }
 
+enum AustriaNQF {}
+enum BosniaAndHerzegovinaNQF {}
+enum BulgariaNQF {}
+enum CroatiaNQF {}
+enum CyprusNQF {}
+enum CzechRepublicNQF {}
+enum DenmarkNQF {}
+enum GermanyNQF {}
+enum EstoniaNQF {}
 /// The national qualification framework levels of Finland.
 /// See https://www.oph.fi/en/education-and-qualifications/qualifications-frameworks
 enum FinlandNQF {
@@ -88,3 +97,27 @@ enum FinlandNQF {
     /// and Specialist training in dentistry.
     Level8,
 }
+enum FranceNQF {}
+enum GreeceNQF {}
+enum HungaryNQF {}
+enum IcelandNQF {}
+enum IrelandNQF {}
+enum ItalyNQF {}
+enum LatviaNQF {}
+enum LiechtensteinNQF {}
+enum LithuaniaNQF {}
+enum LuxembourgNQF {}
+enum NorthMacedoniaNQF {}
+enum MaltaNQF {}
+enum MontenegroNQF {}
+enum NetherlandsNQF {}
+enum NorwayNQF {}
+enum PolandNQF {}
+enum PortugalNQF {}
+enum RomaniaNQF {}
+enum SerbiaNQF {}
+enum SlovakiaNQF {}
+enum SloveniaNQF {}
+enum SwedenNQF {}
+enum SwitzerlandNQF {}
+enum TurkeyNQF {}
