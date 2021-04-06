@@ -1,6 +1,6 @@
 /*!
 This submodule provides a Rust implementation of the European Qualifications Framework.
-The implementation is an enumeration of the different levels of international qualification,
+The implementation is an enumeration of the 8 different levels of international qualification,
 as recognized by the European Union and its partners.
 
 See https://europa.eu/europass/en/european-qualifications-framework-eqf
