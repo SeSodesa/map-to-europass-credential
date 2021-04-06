@@ -78,6 +78,15 @@ pub enum ContentEncodingTypes {
     Base64,
 }
 
+///  The Europass Standard List of Educational Credit Systems distinguishes between existing and widely used European credit systems, e.g. for higher education (ECTS) and for vocational education and training (ECVET).
+///  See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/education-credit.
+pub enum EducationalCreditSystems {
+    /// European credit system for vocational education and training
+    VocationalSystem,
+    /// European Credit Transfer System
+    CreditTransferSystem,
+}
+
 /// An enumeration of the standard Europass credential types.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/credential/25831c2.
 pub enum CredentialType {
