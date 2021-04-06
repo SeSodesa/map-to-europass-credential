@@ -176,6 +176,22 @@ pub enum LearningSettingType {
     NonFormalLearning,
 }
 
+/// This refers to the `VerificationType` in the documentation.
+/// Therefore this type is provided simply as in indirect means of accessing
+/// an instance of `VerificationType`.
+pub struct SupervisionAndVerificationType (VerificationType);
+
+///  The Europass Standard List of Modes of Learning and Assessment provides a list of distinct means by which learning and assessment can be carried out.
+///  See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/learning-assessment
+pub enum ModeOfLearningType {
+    WorkBased,
+    ProjectBased,
+    Presential,
+    Online,
+    Blended,
+    ResearchLabBased,
+}
+
 /// An enumeration of the standard Europass verification statuses.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
 pub enum VerificationStatus {
