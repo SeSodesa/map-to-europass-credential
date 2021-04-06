@@ -57,6 +57,7 @@ enum CzechRepublicNQF {}
 enum DenmarkNQF {}
 enum GermanyNQF {}
 enum EstoniaNQF {}
+
 /// The national qualification framework levels of Finland.
 /// See https://www.oph.fi/en/education-and-qualifications/qualifications-frameworks
 enum FinlandNQF {
@@ -97,6 +98,7 @@ enum FinlandNQF {
     /// and Specialist training in dentistry.
     Level8,
 }
+
 enum FranceNQF {}
 enum GreeceNQF {}
 enum HungaryNQF {}
