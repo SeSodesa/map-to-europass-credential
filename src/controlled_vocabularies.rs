@@ -121,6 +121,24 @@ pub enum EntitlementType {
     Membership
 }
 
+/// The Europass Standard List of Learning Activity Types categorises and labels activities that learners can engage with in order to achieve pre-defined learning outcomes.
+/// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/learning-activity.
+pub enum LearningActivityType {
+    /// Lab / simulation / practice coursework
+    PracticalCoursework,
+    JobExperience,
+    Volunteering,
+    Research,
+    SelfMotivatedStudy,
+    ELearningCoursework,
+    Internship,
+    Apprenticeship,
+    /// Workshop, seminar or conference
+    Workshop,
+    EducationalProgramme,
+    ClassroomCoursework,
+}
+
 /// An enumeration of the standard Europass verification statuses.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
 pub enum VerificationStatus {
