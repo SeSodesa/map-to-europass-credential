@@ -156,6 +156,14 @@ pub enum LearningOpportunityType {
     Thesis,
 }
 
+///  The Europass Standard List of Learning Schedule Types allows, in a standardised way, the indication of the intensity of learning, from light part time to full time engagement.
+///  See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/learning-schedule/25831c2
+pub enum LearningScheduleType {
+    PartTimeLight,
+    FullTime,
+    PartTimeIntensive,
+}
+
 /// An enumeration of the standard Europass verification statuses.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
 pub enum VerificationStatus {
