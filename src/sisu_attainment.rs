@@ -8,7 +8,6 @@ the [SISU Swagger UI](https://sis-tuni.funidata.fi/ori/swagger-ui.html) with ser
 use serde::Deserialize;
 use serde_json;
 use chrono;
-use crate::ToEuropassCredential;
 
 /// An attainment returned from the SISU database upon sending
 /// a successful GET request to  the SISU Swagger API.
@@ -103,7 +102,7 @@ struct SISUAttainment {
     verifier_person_id: String,
 }
 
-impl ToEuropassCredential for SISUAttainment {
+impl crate::ToEuropassCredential for SISUAttainment {
     fn to_europass_credential(
         attainment: SISUAttainment
     ) -> crate::europass_learning_model::EuropassCredential {
