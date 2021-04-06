@@ -347,13 +347,59 @@ struct VerificationCheck {
     id: URI,
     /// The type of verification check.
     /// One of Europass standard list of verification types.
-    check_type: Code,
+    check_type: VerificationType,
     /// The credential subject of this verififcation check.
     subject: EuropassCredential,
     /// The result of the check.
     status: VerificationStatus,
     /// A free text description of the check and the result.
     description: Note,
+}
+
+/// An enumeration of the standard Europass verification statuses.
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification/25831c2.
+enum VerificationType {
+    /// Check whether the the person presenting the credential is the owner.
+    /// Includes:
+    ///
+    /// (a) Comparison of the Name and Date of Birth written in
+    ///     the credential with the name and date of birth stored
+    ///     in a person's national eID.
+    Owner,
+    /// Check whether the the credential has been revoked.
+    /// Includes:
+    /// (a) check if revocation certificate has been published to address indicated in
+    ///     the credential.
+    /// (b) Check if revocation certificate has been published to national revocation list
+    /// (c) Check if revocation certificate has been published to EU revocation list
+    Revocation,
+    /// Check as to whether the credential has been issued according to
+    /// the standard specified for that credential-type. Includes:
+    ///
+    /// (a) technical check of the XML file for validity
+    /// (b) check if credential has basic required fields for all credentials
+    /// (c) check if credential has followed the rules indicated against
+    ///     the application profile for that specific credential-type stored at
+    ///     data.europa.eu
+    Format,
+    /// Check whether the credential is still valid. Includes:
+    ///
+    /// (a) check against expiry information contained with credential
+    Validity,
+    /// Custom check defined by a third-party credential verifier
+    Custom,
+    /// Check whether the awarding body is authorised to issue the credential.
+    /// Includes:
+    ///
+    /// (a) check if credential is an NQF qualification award.
+    /// (b) If it is, check that institution or qualification is in
+    ///     the accreditation database by comparing UID of qualification
+    ///     and/or institution with that in the accreditation database
+    Accreditation,
+    /// Check as to whether the credential has been tampered with. Includes:
+    ///
+    /// (a) check that the eSeal is valid
+    Seal,
 }
 
 /// An enumeration of the standard Europass verification statuses.
