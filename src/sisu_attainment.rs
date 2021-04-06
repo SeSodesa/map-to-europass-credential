@@ -5,7 +5,7 @@ These are constructed from JSON requests returned from
 the [SISU Swagger UI](https://sis-tuni.funidata.fi/ori/swagger-ui.html) with serde.
 */
 
-use serde::{Serialize, Deserialize};
+use serde::Deserialize;
 use serde_json;
 use chrono;
 
@@ -182,7 +182,7 @@ impl<'de> serde::Deserialize<'de> for RoleURN {
 }
 
 // A map <langCode, value> of plain strings containing localized versions of a text
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 struct LocalizedString {
     en: String,
     fi: String,
@@ -190,7 +190,7 @@ struct LocalizedString {
 }
 
 /// Credit transfer information for an attainment that has been transferred.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="camelCase")]
 struct CreditTransferInfo {
     /// The date of the credit transfer
@@ -209,7 +209,7 @@ struct CreditTransferInfo {
 }
 
 /// The state a document is in.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="SCREAMING_SNAKE_CASE")]
 enum DocumentState {
     Draft,
@@ -218,7 +218,7 @@ enum DocumentState {
 }
 
 /// A type that contains information about an average grade calculation.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="camelCase")]
 struct GradeAverage {
     /// The grade scale that was used.
@@ -233,7 +233,7 @@ struct GradeAverage {
 }
 
 /// An enum describing how a grade average was calculated.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="SCREAMING_SNAKE_CASE")]
 enum AverageCalculationMethod {
     CourseUnitArithmeticMeanWeightingByCredits,
@@ -241,7 +241,7 @@ enum AverageCalculationMethod {
 }
 
 /// Organisations responsible for an attainment in various ways and fractions.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="camelCase")]
 struct OrganisationRoleShareBase {
     /// Identifier for an educational institution.
@@ -259,7 +259,7 @@ struct OrganisationRoleShareBase {
 }
 
 /// A state an attainment could be in.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="SCREAMING_SNAKE_CASE")]
 enum AttainmentState {
     Attained,
@@ -269,7 +269,7 @@ enum AttainmentState {
 }
 
 /// A type of attainment.
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 #[serde(rename_all="PascalCase")]
 enum AttainmentType {
     AssessmentItemAttainment,
