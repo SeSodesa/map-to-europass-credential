@@ -51,13 +51,22 @@ pub enum AssessmentType {
 }
 
 /// The Europass Standard List of Communication Channel Types provides a list of online information transmission media categories.
-/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/com-channel/25831c2
+/// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/com-channel/25831c2.
 pub enum CommunicationChannelType {
     Post,
     Email,
     MobilePhone,
     Fax,
     Web,
+}
+
+/// The Europass Standard List of Communication Channel Usage Types provides a list of descriptors of information transmission settings.
+/// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/com-channel-usg.
+pub enum CommunicationChannelUsageType {
+    Personal,
+    Legal,
+    Business,
+    Mobile,
 }
 
 /// An enumeration of the standard Europass credential types.
