@@ -1,5 +1,5 @@
 [package]
-name = "sisu_attainment_to_europass_credential_map"
+name = "map_to_europass_credential"
 version = "0.1.0"
 authors = ["Santtu Söderholm <santtu.soderholm@protonmail.com>"]
 edition = "2018"
