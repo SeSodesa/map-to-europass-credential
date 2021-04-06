@@ -37,7 +37,7 @@ struct VerifiableCredential {
 /// A Europass credential is a set of one or more claims which may be used to
 /// demonstrate that the owner has certain skills or has achieved certain
 /// learning outcomes through formal, non-formal or informal learning.
-struct EuropassCredential {
+pub struct EuropassCredential {
     /// The identifier of this Europass Credential.
     identifier: Identifier,
     /// The type of this credential.
