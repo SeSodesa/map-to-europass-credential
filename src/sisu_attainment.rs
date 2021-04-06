@@ -105,7 +105,7 @@ struct SISUAttainment {
 impl crate::ToEuropassCredential for SISUAttainment {
     fn to_europass_credential(
         attainment: SISUAttainment
-    ) -> crate::europass_learning_model::EuropassCredential {
+    ) -> crate::europass_learning_model::VerifiableCredential {
         todo!()
     }
 }

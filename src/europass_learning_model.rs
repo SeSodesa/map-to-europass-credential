@@ -16,7 +16,7 @@ use crate::controlled_vocabularies;
 /// authorship that can be cryptographically verified.
 /// Verifiable credentials can be used to build verifiable presentations,
 /// which can also be cryptographically verified.
-struct VerifiableCredential {
+pub struct VerifiableCredential {
     /// A unique portable identifier of the credential.
     /// Has to be a valid URI.
     id: URI,
@@ -29,15 +29,15 @@ struct VerifiableCredential {
     valid_from: chrono::naive::NaiveDateTime,
     /// The expiration date of this credential.
     expiration_date: chrono::naive::NaiveDateTime,
-    /// The Europass Credential carried within this verifiable credential.
-    europass_credential: EuropassCredential,
+    /// The more specific credential carried within this verifiable credential.
+    credential: EuropassCredential,
 }
 
 /// A set of claims made by an issuer in Europe, using the Europass Standards.
 /// A Europass credential is a set of one or more claims which may be used to
 /// demonstrate that the owner has certain skills or has achieved certain
 /// learning outcomes through formal, non-formal or informal learning.
-pub struct EuropassCredential {
+struct EuropassCredential {
     /// The identifier of this Europass Credential.
     identifier: Identifier,
     /// The type of this credential.
