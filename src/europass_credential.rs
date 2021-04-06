@@ -523,6 +523,27 @@ struct Qualification {
 }
 
 /// An enumeration of the standard Europass EQF qualification levels.
+/// Each of the 8 levels is defined by a set of descriptors indicating
+/// the learning outcomes relevant to qualifications at that level
+/// in any qualifications system.
+///
+/// # Knowledge
+///
+/// In the context of EQF, knowledge is described as theoretical and/or factual.
+///
+/// # Skills
+///
+/// In the context of EQF, skills are described as cognitive
+/// (involving the use of logical, intuitive and creative thinking)
+/// and practical (involving manual dexterity and the use of methods,
+/// materials, tools and instruments).
+///
+/// # Responsibility and autonomy
+///
+/// In the context of the EQF responsibility and autonomy is described as
+/// the ability of the learner to apply knowledge and skills autonomously
+/// and with responsibility.
+///
 /// See https://europa.eu/europass/en/description-eight-eqf-levels
 /// for details.
 enum EQFLevel {
