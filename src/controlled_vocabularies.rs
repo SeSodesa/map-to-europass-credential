@@ -139,6 +139,23 @@ pub enum LearningActivityType {
     ClassroomCoursework,
 }
 
+/// The Europass Standard List of Learning Opportunity Types provides an array of potential delivery formats of organised learning.
+/// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/learning-opportunity
+pub enum LearningOpportunityType {
+    Course,
+    ProgrammeModule,
+    Mentoring,
+    MOOC,
+    Apprenticeship,
+    StudyVisit,
+    ShortLearningProgramme,
+    Internship,
+    EducationalProgramme,
+    Class,
+    ServiceLearning,
+    Thesis,
+}
+
 /// An enumeration of the standard Europass verification statuses.
 /// See https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://data.europa.eu/snb/verification-status/25831c2.
 pub enum VerificationStatus {
