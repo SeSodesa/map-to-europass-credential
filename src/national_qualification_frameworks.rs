@@ -1,15 +1,56 @@
 /*!
 This submodule provides a set of national qualification framework (NQF) enums,
 that list the different national qualification levels acknowledged by
-the European Union.
+the European Union. They should be accessed through the top level
+enum `NQF`, at least when used as struct members.
 
 See https://www.oph.fi/en/education-and-qualifications/qualifications-frameworks
 for a list of links to relevant documents and details.
 */
 
+/// The root of the shallow national qualification framework tree.
+/// Lists the nations that have provided their NQFs for review,
+/// and provides access to them, when used as a member of a struct.
+enum NQF {
+    Austria,
+    BosniaAndHerzegovina,
+    Bulgaria,
+    Croatia,
+    Cyprus,
+    CzechRepublic,
+    Denmark,
+    Germany,
+    Estonia,
+    Finland(FinlandNQF),
+    France,
+    Greece,
+    Hungary,
+    Iceland,
+    Ireland,
+    Italy,
+    Latvia,
+    Liechtenstein,
+    Lithuania,
+    Luxembourg,
+    NorthMacedonia,
+    Malta,
+    Montenegro,
+    Netherlands,
+    Norway,
+    Poland,
+    Portugal,
+    Romania,
+    Serbia,
+    Slovakia,
+    Slovenia,
+    Sweden,
+    Switzerland,
+    Turkey,
+}
+
 /// The national qualification framework levels of Finland.
 /// See https://www.oph.fi/en/education-and-qualifications/qualifications-frameworks
-enum Finland {
+enum FinlandNQF {
     /// Basic education syllabus and Preparatory education
     /// for working life and independent living (TELMA).
     Level2,
