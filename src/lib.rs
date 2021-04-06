@@ -14,4 +14,5 @@ so in addition to a format transformation, a field transformation is performed a
 
 mod sisu_attainment;
 mod europass_credential;
+mod european_qualifications_framework;
 mod national_qualification_frameworks;
