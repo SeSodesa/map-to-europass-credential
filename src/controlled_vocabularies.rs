@@ -194,7 +194,7 @@ pub enum ModeOfLearningType {
 
 /// The Europass Standard List of Target Groups provides a custom vocabulary to describe groups of learners that a learning opportunity, and corresponding credential, is tailored and/or best suited for.
 /// See https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/target-group
-pub enum TargetGroup {
+pub enum LearningTargetGroup {
     HighAchievers,
     NonNativeSpeakers,
     RequiringEmploymentRetraining,
