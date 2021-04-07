@@ -52,9 +52,9 @@ pub struct EuropassCredential {
     description: Note,
     /// The organisaton that issued the credential and
     /// sealed it with their digital e-seal.
-    issuer: String,
+    issuer: Organisation,
     /// The person about which claims are made and who owns the credential.
-    credential_subject: String,
+    credential_subject: Person,
     /// The display details of the credential.
     display: String,
     /// Any digital document (PDF, JPEG or PNG format) that an issuer
