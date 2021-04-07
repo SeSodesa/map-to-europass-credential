@@ -152,9 +152,8 @@ impl<'de> serde::Deserialize<'de> for RoleURN {
         impl<'de> serde::de::Visitor<'de> for RoleURNVisitor {
             type Value = RoleURN;
             fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                write!(formatter, "an integer or string representing a Foo")
+                write!(formatter, "This Visitor expects a URN of the form urn:code:attainment-acceptor-type:⋯ ")
             }
-
             fn visit_str<E: serde::de::Error>(self, s: &str) -> Result<RoleURN, E> {
                 match s {
                     "urn:code:attainment-acceptor-type:approved-by"
