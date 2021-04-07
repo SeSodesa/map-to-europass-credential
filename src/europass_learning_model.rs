@@ -1047,9 +1047,6 @@ struct Duration(u64);
 
 // ------- Additional Types Not In Spec -------
 
-/// The contact information of an agent.
-struct ContactPoint;
-
 /// An associated field of education from another
 /// semantic framework than the ISCED classification.
 struct EducationSubjectAssociation;
