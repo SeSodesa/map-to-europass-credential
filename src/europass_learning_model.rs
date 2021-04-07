@@ -66,7 +66,7 @@ pub struct EuropassCredential {
     /// A credential embedded within the credential.
     /// Smaller sub-credentials (micro-credentials),
     /// that make up this larger credential when combined.
-    contains: Box<EuropassCredential>,
+    contains: Option<Box<EuropassCredential>>,
 }
 
 /// The cryptographic proof that can be used to detect tampering and
