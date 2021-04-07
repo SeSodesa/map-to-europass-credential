@@ -93,7 +93,7 @@ struct Agent {
     /// An additional free text note about the agent.
     note: Note,
     /// The contact information of an agent.
-    contact_point: ContactPoint,
+    contact_point: ContactInformation,
 }
 
 /// A concrete human instance of an agent.
