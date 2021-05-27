@@ -1,3 +1,4 @@
+#![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
 /*!
 This submodule defines the SISU attainment type `SISUAttainment`.
 It also contains the types of the fields of `SISUAttainment`.
@@ -106,6 +107,8 @@ impl crate::ToEuropassCredential for SISUAttainment {
     fn to_europass_credential(
         attainment: SISUAttainment
     ) -> crate::europass_learning_model::EuropassCredential {
+        // Destructure attainment with pattern matching
+        let SISUAttainment { .. } = attainment;
         todo!()
     }
 }

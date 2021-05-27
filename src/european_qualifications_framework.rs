@@ -1,3 +1,4 @@
+#![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
 /*!
 This submodule provides a Rust implementation of the European Qualifications Framework.
 The implementation is an enumeration of the 8 different levels of international qualification,

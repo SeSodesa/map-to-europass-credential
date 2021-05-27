@@ -1,3 +1,4 @@
+#![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
 /*!
 This submodule defines the Rust representation of the controlled vocabularies
 published in the Named Authority Lists of Europass. These refer to different

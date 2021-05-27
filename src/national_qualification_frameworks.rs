@@ -1,3 +1,4 @@
+#![cfg_attr(debug_assertions, allow(dead_code, unused_imports))]
 /*!
 This submodule provides a set of national qualification framework (NQF) enums,
 that list the different national qualification levels acknowledged by
@@ -48,19 +49,19 @@ pub enum NQF {
     Turkey(TurkeyNQF),
 }
 
-enum AustriaNQF {}
-enum BosniaAndHerzegovinaNQF {}
-enum BulgariaNQF {}
-enum CroatiaNQF {}
-enum CyprusNQF {}
-enum CzechRepublicNQF {}
-enum DenmarkNQF {}
-enum GermanyNQF {}
-enum EstoniaNQF {}
+pub enum AustriaNQF {}
+pub enum BosniaAndHerzegovinaNQF {}
+pub enum BulgariaNQF {}
+pub enum CroatiaNQF {}
+pub enum CyprusNQF {}
+pub enum CzechRepublicNQF {}
+pub enum DenmarkNQF {}
+pub enum GermanyNQF {}
+pub enum EstoniaNQF {}
 
 /// The national qualification framework levels of Finland.
 /// See https://www.oph.fi/en/education-and-qualifications/qualifications-frameworks
-enum FinlandNQF {
+pub enum FinlandNQF {
     /// Basic education syllabus and Preparatory education
     /// for working life and independent living (TELMA).
     Level2,
@@ -99,27 +100,27 @@ enum FinlandNQF {
     Level8,
 }
 
-enum FranceNQF {}
-enum GreeceNQF {}
-enum HungaryNQF {}
-enum IcelandNQF {}
-enum IrelandNQF {}
-enum ItalyNQF {}
-enum LatviaNQF {}
-enum LiechtensteinNQF {}
-enum LithuaniaNQF {}
-enum LuxembourgNQF {}
-enum NorthMacedoniaNQF {}
-enum MaltaNQF {}
-enum MontenegroNQF {}
-enum NetherlandsNQF {}
-enum NorwayNQF {}
-enum PolandNQF {}
-enum PortugalNQF {}
-enum RomaniaNQF {}
-enum SerbiaNQF {}
-enum SlovakiaNQF {}
-enum SloveniaNQF {}
-enum SwedenNQF {}
-enum SwitzerlandNQF {}
-enum TurkeyNQF {}
+pub enum FranceNQF {}
+pub enum GreeceNQF {}
+pub enum HungaryNQF {}
+pub enum IcelandNQF {}
+pub enum IrelandNQF {}
+pub enum ItalyNQF {}
+pub enum LatviaNQF {}
+pub enum LiechtensteinNQF {}
+pub enum LithuaniaNQF {}
+pub enum LuxembourgNQF {}
+pub enum NorthMacedoniaNQF {}
+pub enum MaltaNQF {}
+pub enum MontenegroNQF {}
+pub enum NetherlandsNQF {}
+pub enum NorwayNQF {}
+pub enum PolandNQF {}
+pub enum PortugalNQF {}
+pub enum RomaniaNQF {}
+pub enum SerbiaNQF {}
+pub enum SlovakiaNQF {}
+pub enum SloveniaNQF {}
+pub enum SwedenNQF {}
+pub enum SwitzerlandNQF {}
+pub enum TurkeyNQF {}
