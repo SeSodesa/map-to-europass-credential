@@ -363,7 +363,7 @@ struct LearningSpecification {
     /// to complete the learning opportunity.
     maximum_duration: Duration,
     /// A specific target group or category for which this specification is designed.
-    target_group: Code,
+    target_group: crate::controlled_vocabularies::LearningTargetGroup,
     /// Specific entry requirements or prerequisites of individuals
     /// for which this specification is designed to start this learning opportunity.
     entry_requirements_note: Note,
