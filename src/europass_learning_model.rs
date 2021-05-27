@@ -354,7 +354,7 @@ struct LearningSpecification {
     /// describing education levels.
     education_level: EducationLevelAssociation,
     /// The instruction and/or assessment language(s) used.
-    language: Code,
+    language: crate::controlled_vocabularies::Language,
     /// The mode of learning and or assessment.
     mode: crate::controlled_vocabularies::ModeOfLearningType,
     /// The type of learning setting (formal, non-formal).
