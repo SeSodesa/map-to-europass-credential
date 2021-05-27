@@ -358,7 +358,7 @@ struct LearningSpecification {
     /// The mode of learning and or assessment.
     mode: Code,
     /// The type of learning setting (formal, non-formal).
-    learning_setting: Code,
+    learning_setting: crate::controlled_vocabularies::LearningSettingType,
     /// The maximum duration (in months) that a person may use
     /// to complete the learning opportunity.
     maximum_duration: Duration,
