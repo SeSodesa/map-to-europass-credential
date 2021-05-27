@@ -2,7 +2,7 @@
 This submodule defines the Europass credential type EuropassCredential
 and the types required in the construction of its fields.
 
-See https://github.com/european-commission-europass/Europass-Learning-Model/blob/master/Credentials/Credentials_Learning_Model.md
+See https://github.com/european-commission-europass/Europass-Learning-Model/blob/master/Europass_Learning_Model.md
 */
 
 use chrono;
