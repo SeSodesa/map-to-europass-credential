@@ -691,7 +691,7 @@ impl std::convert::TryFrom<&str> for MDRcurrency {
     }
 }
 
-/// The list of languages recognized by the European Union.
-/// See: http://publications.europa.eu/resource/authority/language
+/// The list of languages recognized by the European Union. See:
+/// https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/language
 /// for details.
 pub enum Language {}
